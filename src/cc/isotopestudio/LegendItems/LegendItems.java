@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import cc.isotopestudio.LegendItems.command.CommandLegend;
 import cc.isotopestudio.LegendItems.task.UpdateItems;
 
 public class LegendItems extends JavaPlugin {
@@ -47,8 +48,7 @@ public class LegendItems extends JavaPlugin {
 		PluginManager pm = this.getServer().getPluginManager();
 		// pm.registerEvents(new ConnoListener(), this);
 
-		// this.getCommand("ConnoisseurAdmin").setExecutor(/*new
-		// CommandCadmin()*/);
+		this.getCommand("Legend").setExecutor(new CommandLegend());
 		new UpdateItems(this).runTask(this);
 		getLogger().info(pluginName + "成功加载!");
 		getLogger().info(pluginName + "由ISOTOPE Studio制作!");
