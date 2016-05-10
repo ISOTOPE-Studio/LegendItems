@@ -1,0 +1,12 @@
+name: LegendItems
+main: cc.isotopestudio.LegendItems.LegendItems
+
+author: Mars
+description: LegendItems
+website: http://isotopestudio.cc
+version: 1.0.0
+commands:
+  legend:
+    description: LegendItems command
+    usage: /<command> - Get Information
+    aliases: li

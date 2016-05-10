@@ -1,0 +1,18 @@
+mars:
+  name: "°Ïc¥´∆Ê±¶Ω£"
+  material: DIAMOND_SWORD
+  damage: 0
+  lore: 
+  - "°ÏaISOTOPE Studio"
+  - "°ÏbPresents"
+  attributions:
+  - ADDITION
+frank:
+  name: "°Ïc¿œ ¶±¶Ω£"
+  material: GOLD_SWORD
+  damage: 0
+  lore: 
+  - "°ÏaISOTOPE Studio"
+  - "°ÏbPresents"
+  attributions:
+  - ADDITION
