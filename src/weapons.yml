@@ -1,3 +1,10 @@
+# 武器属性
+# ADDITIONAL - 攻击
+# CRITICAL - 暴击
+# VAMPIRIC - 吸血
+# DIRECT - 破甲伤害
+# MONSTER - 怪物伤害
+# PLAYER - 玩家伤害
 mars:
   name: "§c传奇宝剑"
   material: DIAMOND_SWORD
@@ -6,7 +13,7 @@ mars:
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
-  - ADDITION
+  - ADDITIONAL 15
 frank:
   name: "§c老师宝剑"
   material: GOLD_SWORD

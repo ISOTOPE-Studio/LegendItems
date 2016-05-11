@@ -34,6 +34,10 @@ public class S {
 		return new StringBuilder().append(ChatColor.GREEN).append(ChatColor.BOLD).append(s).toString();
 	}
 
+	public static String toBoldRed(String s) {
+		return new StringBuilder().append(ChatColor.RED).append(ChatColor.BOLD).append(s).toString();
+	}
+
 	public static String toBoldDarkGreen(String s) {
 		return new StringBuilder().append(ChatColor.DARK_GREEN).append(ChatColor.BOLD).append(s).toString();
 	}
@@ -65,4 +69,5 @@ public class S {
 	public static String toPrefixGray(String s) {
 		return new StringBuilder(LegendItems.prefix).append(ChatColor.GRAY).append(s).toString();
 	}
+
 }

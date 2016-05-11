@@ -44,17 +44,17 @@ public class CommandLegend implements CommandExecutor {
 							player.sendMessage(S.toPrefixRed("物品不存在"));
 							return true;
 						}
-						// player.getInventory().addItem(item.getItem());
+						player.getInventory().addItem(item.getItem());
 						player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
 						return true;
 					}
 				}
 				if (args[0].equalsIgnoreCase("listw")) {
-					player.sendMessage(S.toPrefixGreen("武器列表 " + armors.keySet().toString()));
+					player.sendMessage(S.toPrefixGreen("武器列表 " + weapons.keySet().toString()));
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("lista")) {
-					player.sendMessage(S.toPrefixGreen("装备列表 " + weapons.keySet().toString()));
+					player.sendMessage(S.toPrefixGreen("装备列表 " + armors.keySet().toString()));
 					return true;
 				}
 				S.toPrefixRed("命令不存在");

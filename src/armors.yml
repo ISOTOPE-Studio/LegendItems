@@ -1,10 +1,28 @@
+# 装备属性
+# DODGE - 闪避
+# BOUNCE - 反伤
+# DEFENSE - 防御
+# LIFE - 生命
+# FLEXIBILITY - 韧性
+# DURABILITY - 耐久
+
 leon:
   name: "§c工作室头盔"
-  password: 5317
   material: DIAMOND_HELMET
   damage: 0
   lore: 
   - "§3.Suits."
+  - "§aISOTOPE Studio"
+  - "§bPresents"
+  attributions:
+  - SPEED 1
+olivia:
+  name: "§c设计者头盔"
+  material: DIAMOND_HELMET
+  damage: 0
+  lore: 
+  - "§3.茄子!."
+  - "§3.Suits 2."
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
