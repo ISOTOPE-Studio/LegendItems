@@ -17,14 +17,12 @@ public class ArmorObj {
 	final Set<ArmorAttriType> attriList;
 	final HashMap<ArmorAttriType, Double> parameters;
 	final ItemStack item;
-	final public static String header = S.toGray("——————— ") + S.toBoldRed("【传奇大陆传奇装备】") + S.toGray(" ———————");
 
 	public ArmorObj(String name, Material material, short damage, List<String> lore, Set<ArmorAttriType> attriList,
 			HashMap<ArmorAttriType, Double> parameters) {
 		this.name = name;
 		this.attriList = attriList;
 		this.parameters = parameters;
-		lore.add(header);
 		for (ArmorAttriType type : attriList) {
 			if (type.isPercentile()) {
 				lore.add(type.toString() + " " + parameters.get(type) + "%");
@@ -32,7 +30,6 @@ public class ArmorObj {
 				lore.add(type.toString() + " " + parameters.get(type));
 			}
 		}
-		lore.add(header);
 		ItemStack item = new ItemStack(material, 1, damage);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
@@ -55,7 +52,7 @@ public class ArmorObj {
 
 	@Override
 	public String toString() {
-		return "ArmorObj [name=" + name + ", attriList=" + attriList + ", item=" + item + "]";
+		return "ArmorObj [name=" + name + ", attriList=" + attriList + ", item=" + item.getType() + "]";
 	}
 
 }

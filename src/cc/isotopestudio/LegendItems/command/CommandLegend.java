@@ -6,10 +6,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import cc.isotopestudio.LegendItems.items.ArmorObj;
-import cc.isotopestudio.LegendItems.items.WeaponObj;
-import cc.isotopestudio.LegendItems.utli.S;
+import cc.isotopestudio.LegendItems.items.*;
+import cc.isotopestudio.LegendItems.utli.*;
 import static cc.isotopestudio.LegendItems.items.Items.*;
+
+import java.util.ArrayList;
 
 public class CommandLegend implements CommandExecutor {
 
@@ -48,13 +49,47 @@ public class CommandLegend implements CommandExecutor {
 						player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
 						return true;
 					}
+					if (args[0].equalsIgnoreCase("gets")) {
+						SuitObj item = suits.get(args[1]);
+						if (item == null) {
+							player.sendMessage(S.toPrefixRed("套装不存在"));
+							return true;
+						}
+						player.getInventory().addItem(item.getItems());
+						player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
+						return true;
+					}
 				}
 				if (args[0].equalsIgnoreCase("listw")) {
-					player.sendMessage(S.toPrefixGreen("武器列表 " + weapons.keySet().toString()));
+					String result = weapons.keySet().toString();
+					if (result.length() == 2) {
+						player.sendMessage(S.toPrefixRed("没有装备"));
+						return true;
+					}
+					player.sendMessage(S.toPrefixGreen("武器列表 " + result.substring(1, result.length() - 1)));
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("lista")) {
-					player.sendMessage(S.toPrefixGreen("装备列表 " + armors.keySet().toString()));
+					String result = armors.keySet().toString();
+					if (result.length() == 2) {
+						player.sendMessage(S.toPrefixRed("没有武器"));
+						return true;
+					}
+					player.sendMessage(S.toPrefixGreen("装备列表 " + result.substring(1, result.length() - 1)));
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("lists")) {
+					String result = suits.keySet().toString();
+					if (result.length() == 2) {
+						player.sendMessage(S.toPrefixRed("没有武器"));
+						return true;
+					}
+					player.sendMessage(S.toPrefixGreen("装备列表 " + result.substring(1, result.length() - 1)));
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("update")) {
+
+					player.sendMessage(S.toPrefixGreen("成功更新 "));
 					return true;
 				}
 				S.toPrefixRed("命令不存在");
@@ -72,8 +107,11 @@ public class CommandLegend implements CommandExecutor {
 		player.sendMessage(S.toPrefixGreen("帮助菜单"));
 		player.sendMessage(S.toBoldGreen("/" + label + " getw <武器名>") + S.toGray(" - ") + S.toGold("获得传奇武器"));
 		player.sendMessage(S.toBoldGreen("/" + label + " geta <装备名>") + S.toGray(" - ") + S.toGold("获得传奇装备"));
+		player.sendMessage(S.toBoldGreen("/" + label + " gets <套装名>") + S.toGray(" - ") + S.toGold("获得传奇套装"));
 		player.sendMessage(S.toBoldGreen("/" + label + " listw") + S.toGray(" - ") + S.toGold("查看传奇武器列表"));
 		player.sendMessage(S.toBoldGreen("/" + label + " lista") + S.toGray(" - ") + S.toGold("查看传奇装备列表"));
+		player.sendMessage(S.toBoldGreen("/" + label + " lists") + S.toGray(" - ") + S.toGold("查看传奇套装列表"));
+		player.sendMessage(S.toBoldGreen("/" + label + " update") + S.toGray(" - ") + S.toGold("更新列表"));
 	}
 
 }

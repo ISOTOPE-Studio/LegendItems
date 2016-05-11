@@ -45,6 +45,14 @@ public class LegendItems extends JavaPlugin {
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
+		getLogger().info("加载套装文件！");
+		try {
+			getSuitsData().save(suitsDataFile);
+		} catch (IOException e) {
+			getLogger().info("套装文件出错！");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+		}
 		PluginManager pm = this.getServer().getPluginManager();
 		// pm.registerEvents(new ConnoListener(), this);
 
@@ -110,6 +118,35 @@ public class LegendItems extends JavaPlugin {
 			getArmorsData().save(armorsDataFile);
 		} catch (IOException ex) {
 			getLogger().info("装备文件保存失败！");
+		}
+	}
+
+	private File suitsDataFile = null;
+	private FileConfiguration suitsData = null;
+
+	public void reloadSuitsData() {
+		if (suitsDataFile == null) {
+			this.saveResource("suits.yml", false);
+		}
+		suitsDataFile = new File(getDataFolder(), "suits.yml");
+		suitsData = YamlConfiguration.loadConfiguration(suitsDataFile);
+	}
+
+	public FileConfiguration getSuitsData() {
+		if (suitsData == null) {
+			reloadSuitsData();
+		}
+		return suitsData;
+	}
+
+	public void saveSuitsData() {
+		if (suitsData == null || suitsDataFile == null) {
+			return;
+		}
+		try {
+			getSuitsData().save(suitsDataFile);
+		} catch (IOException ex) {
+			getLogger().info("套装文件保存失败！");
 		}
 	}
 

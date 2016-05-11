@@ -17,11 +17,33 @@ leon:
   attributions:
   - SPEED 1
 olivia:
-  name: "§c设计者头盔"
-  material: DIAMOND_HELMET
+  name: "§c设计者衣服"
+  material: DIAMOND_CHESTPLATE
   damage: 0
   lore: 
   - "§3.茄子!."
+  - "§3.Suits 2."
+  - "§aISOTOPE Studio"
+  - "§bPresents"
+  attributions:
+  - SPEED 1
+tidy:
+  name: "§c设计者裤子"
+  material: DIAMOND_LEGGINGS
+  damage: 0
+  lore: 
+  - "§3.Legging!."
+  - "§3.Suits 2."
+  - "§aISOTOPE Studio"
+  - "§bPresents"
+  attributions:
+  - SPEED 1
+tony:
+  name: "§c开发者鞋子"
+  material: CHAINMAIL_BOOTS
+  damage: 0
+  lore: 
+  - "§3.Boots!."
   - "§3.Suits 2."
   - "§aISOTOPE Studio"
   - "§bPresents"
