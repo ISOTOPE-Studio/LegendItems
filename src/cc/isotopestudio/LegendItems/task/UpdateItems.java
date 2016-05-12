@@ -1,5 +1,9 @@
 package cc.isotopestudio.LegendItems.task;
 
+import static cc.isotopestudio.LegendItems.items.Items.armors;
+import static cc.isotopestudio.LegendItems.items.Items.suits;
+import static cc.isotopestudio.LegendItems.items.Items.weapons;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -9,10 +13,12 @@ import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import cc.isotopestudio.LegendItems.LegendItems;
-import cc.isotopestudio.LegendItems.items.*;
-import cc.isotopestudio.LegendItems.type.*;
-
-import static cc.isotopestudio.LegendItems.items.Items.*;
+import cc.isotopestudio.LegendItems.items.ArmorObj;
+import cc.isotopestudio.LegendItems.items.SuitObj;
+import cc.isotopestudio.LegendItems.items.WeaponObj;
+import cc.isotopestudio.LegendItems.type.ArmorAttriType;
+import cc.isotopestudio.LegendItems.type.SuitPosType;
+import cc.isotopestudio.LegendItems.type.WeaponAttriType;
 
 public class UpdateItems extends BukkitRunnable {
 	private final LegendItems plugin;
@@ -33,7 +39,50 @@ public class UpdateItems extends BukkitRunnable {
 
 		HashMap<String, HashMap<SuitPosType, String>> suitMap = new HashMap<String, HashMap<SuitPosType, String>>();
 		for (String key : suitKeys) {
-			suits.put(key, new SuitObj(plugin.getSuitsData().getString(key + ".name")));
+			Set<ArmorAttriType> ArmorAttriList = new HashSet<ArmorAttriType>();
+			HashMap<ArmorAttriType, Double> ArmorParameters = new HashMap<ArmorAttriType, Double>();
+			Set<ArmorAttriType> WeaponAttriList = new HashSet<ArmorAttriType>();
+			HashMap<ArmorAttriType, Double> WeaponParameters = new HashMap<ArmorAttriType, Double>();
+			for (String line : plugin.getSuitsData().getStringList(key + ".armors.attributions")) {
+				String[] s = line.split(" ");
+				Double value = 0.0;
+				try {
+					value = Double.parseDouble(s[1]);
+				} catch (Exception e) {
+					plugin.getLogger().severe(key + "中的" + line + "是无效行");
+					continue;
+				}
+				ArmorAttriType type = null;
+				try {
+					type = ArmorAttriType.valueOf(s[0]);
+				} catch (Exception e) {
+					plugin.getLogger().severe(key + "中的" + s[0] + "是无效的装备属性");
+					continue;
+				}
+				ArmorAttriList.add(type);
+				ArmorParameters.put(type, value);
+			}
+			for (String line : plugin.getSuitsData().getStringList(key + ".weapon.attributions")) {
+				String[] s = line.split(" ");
+				Double value = 0.0;
+				try {
+					value = Double.parseDouble(s[1]);
+				} catch (Exception e) {
+					plugin.getLogger().severe(key + "中的" + line + "是无效行");
+					continue;
+				}
+				ArmorAttriType type = null;
+				try {
+					type = ArmorAttriType.valueOf(s[0]);
+				} catch (Exception e) {
+					plugin.getLogger().severe(key + "中的" + s[0] + "是无效的装备属性");
+					continue;
+				}
+				WeaponAttriList.add(type);
+				WeaponParameters.put(type, value);
+			}
+			suits.put(key, new SuitObj(plugin.getSuitsData().getString(key + ".name"), ArmorAttriList, ArmorParameters,
+					WeaponAttriList, WeaponParameters));
 			suitMap.put(key, new HashMap<SuitPosType, String>());
 			String helmet = plugin.getSuitsData().getString(key + ".armors.name.helmet");
 			String chestplate = plugin.getSuitsData().getString(key + ".armors.name.chestplate");
@@ -105,6 +154,7 @@ public class UpdateItems extends BukkitRunnable {
 				if (suitMap.get(suitName).get(SuitPosType.WEAPON) != null) {
 					if (key.equals(suitMap.get(suitName).get(SuitPosType.WEAPON))) {
 						suits.get(suitName).setWeapon(weapons.get(key));
+						weapons.get(key).setSuit(suits.get(suitName));
 					}
 				}
 			}
@@ -156,8 +206,10 @@ public class UpdateItems extends BukkitRunnable {
 			for (String suitName : suitKeys) {
 				for (SuitPosType type : SuitPosType.values())
 					if (suitMap.get(suitName).get(type) != null)
-						if (key.equals(suitMap.get(suitName).get(type)))
+						if (key.equals(suitMap.get(suitName).get(type))) {
 							suits.get(suitName).setEquip(type, armors.get(key));
+							armors.get(key).setSuit(suits.get(suitName));
+						}
 			}
 		}
 		System.out.println(weapons);

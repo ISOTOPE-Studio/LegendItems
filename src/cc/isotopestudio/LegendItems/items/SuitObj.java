@@ -1,10 +1,12 @@
 package cc.isotopestudio.LegendItems.items;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.inventory.ItemStack;
 
+import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.SuitPosType;
 
 public class SuitObj {
@@ -15,9 +17,18 @@ public class SuitObj {
 	private ArmorObj leggings;
 	private ArmorObj boots;
 	private WeaponObj weapon;
+	private final Set<ArmorAttriType> ArmorAttriList;
+	private final HashMap<ArmorAttriType, Double> ArmorParameters;
+	private final Set<ArmorAttriType> WeaponAttriList;
+	private final HashMap<ArmorAttriType, Double> WeaponParameters;
 
-	public SuitObj(String name) {
+	public SuitObj(String name, Set<ArmorAttriType> armorAttriList, HashMap<ArmorAttriType, Double> armorParameters,
+			Set<ArmorAttriType> weaponAttriList, HashMap<ArmorAttriType, Double> weaponParameters) {
 		this.name = name;
+		ArmorAttriList = armorAttriList;
+		ArmorParameters = armorParameters;
+		WeaponAttriList = weaponAttriList;
+		WeaponParameters = weaponParameters;
 	}
 
 	public void setHelmet(ArmorObj helmet) {
@@ -107,6 +118,22 @@ public class SuitObj {
 			items.add(weapon.getItem());
 		}
 		return (ItemStack[]) items.toArray(new ItemStack[] {});
+	}
+
+	public Set<ArmorAttriType> getArmorAttriList() {
+		return ArmorAttriList;
+	}
+
+	public HashMap<ArmorAttriType, Double> getArmorParameters() {
+		return ArmorParameters;
+	}
+
+	public Set<ArmorAttriType> getWeaponAttriList() {
+		return WeaponAttriList;
+	}
+
+	public HashMap<ArmorAttriType, Double> getWeaponParameters() {
+		return WeaponParameters;
 	}
 
 	@Override

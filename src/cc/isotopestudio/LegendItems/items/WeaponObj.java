@@ -12,10 +12,11 @@ import cc.isotopestudio.LegendItems.type.WeaponAttriType;
 
 public class WeaponObj {
 
-	final String name;
-	final Set<WeaponAttriType> attriList;
-	final HashMap<WeaponAttriType, Double> parameters;
-	final ItemStack item;
+	private final String name;
+	private final Set<WeaponAttriType> attriList;
+	private final HashMap<WeaponAttriType, Double> parameters;
+	private final ItemStack item;
+	private SuitObj suit;
 
 	public WeaponObj(String name, Material material, short damage, List<String> lore, Set<WeaponAttriType> attriList,
 			HashMap<WeaponAttriType, Double> parameters) {
@@ -49,9 +50,18 @@ public class WeaponObj {
 		return item;
 	}
 
+	public SuitObj getSuit() {
+		return suit;
+	}
+
+	public void setSuit(SuitObj suit) {
+		this.suit = suit;
+	}
+
 	@Override
 	public String toString() {
-		return "WeaponObj [name=" + name + ", attriList=" + attriList + ", item=" + item.getType() + "]";
+		return "WeaponObj [name=" + name + ", attriList=" + attriList + ", parameters=" + parameters + ", item="
+				+ item.getType() + suit != null ? (", suit=" + suit.getName()) : "" + "]";
 	}
 
 }

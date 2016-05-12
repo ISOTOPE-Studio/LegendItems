@@ -13,10 +13,11 @@ import cc.isotopestudio.LegendItems.utli.S;
 
 public class ArmorObj {
 
-	final String name;
-	final Set<ArmorAttriType> attriList;
-	final HashMap<ArmorAttriType, Double> parameters;
-	final ItemStack item;
+	private final String name;
+	private final Set<ArmorAttriType> attriList;
+	private final HashMap<ArmorAttriType, Double> parameters;
+	private final ItemStack item;
+	private SuitObj suit;
 
 	public ArmorObj(String name, Material material, short damage, List<String> lore, Set<ArmorAttriType> attriList,
 			HashMap<ArmorAttriType, Double> parameters) {
@@ -50,9 +51,40 @@ public class ArmorObj {
 		return item;
 	}
 
+	public SuitObj getSuit() {
+		return suit;
+	}
+
+	public void setSuit(SuitObj suit) {
+		this.suit = suit;
+		ItemMeta meta = item.getItemMeta();
+		List<String> lore = meta.getLore();
+		lore.add(S.toBoldDarkAqua("匹配套装 ") + suit.getName());
+
+		lore.add(S.toBoldDarkAqua("穿上四件装备:"));
+		for (ArmorAttriType type : suit.getArmorAttriList()) {
+			if (type.isPercentile()) {
+				lore.add(type.toString() + " " + suit.getArmorParameters().get(type) + "%");
+			} else {
+				lore.add(type.toString() + " " + suit.getArmorParameters().get(type));
+			}
+		}
+		lore.add(S.toBoldDarkAqua("使用武器:"));
+		for (ArmorAttriType type : suit.getWeaponAttriList()) {
+			if (type.isPercentile()) {
+				lore.add(type.toString() + " " + suit.getWeaponParameters().get(type) + "%");
+			} else {
+				lore.add(type.toString() + " " + suit.getWeaponParameters().get(type));
+			}
+		}
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+	}
+
 	@Override
 	public String toString() {
-		return "ArmorObj [name=" + name + ", attriList=" + attriList + ", item=" + item.getType() + "]";
+		return "ArmorObj [name=" + name + ", attriList=" + attriList + ", parameters=" + parameters + ", item="
+				+ item.getType() + suit != null ? (", suit=" + suit.getName()) : "" + "]";
 	}
 
 }
