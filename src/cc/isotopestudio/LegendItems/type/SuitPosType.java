@@ -2,13 +2,13 @@ package cc.isotopestudio.LegendItems.type;
 
 public enum SuitPosType {
 
-	HELMET,
+    HELMET,
 
-	CHESTPLATE,
+    CHESTPLATE,
 
-	LEGGINGS,
+    LEGGINGS,
 
-	BOOTS,
+    BOOTS,
 
-	WEAPON;
+    WEAPON
 }

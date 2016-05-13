@@ -1,85 +1,75 @@
 package cc.isotopestudio.LegendItems.utli;
 
+import cc.isotopestudio.LegendItems.LegendItems;
 import org.bukkit.ChatColor;
 
-import cc.isotopestudio.LegendItems.LegendItems;
-
 public class S {
-	public static String toRed(String s) {
-		return new StringBuilder().append(ChatColor.RED).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toRed(String s) {
+        return String.valueOf(ChatColor.RED) + s + ChatColor.RESET;
+    }
 
-	public static String toGreen(String s) {
-		return new StringBuilder().append(ChatColor.GREEN).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toGreen(String s) {
+        return String.valueOf(ChatColor.GREEN) + s + ChatColor.RESET;
+    }
 
-	public static String toYellow(String s) {
-		return new StringBuilder().append(ChatColor.YELLOW).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toYellow(String s) {
+        return String.valueOf(ChatColor.YELLOW) + s + ChatColor.RESET;
+    }
 
-	public static String toAqua(String s) {
-		return new StringBuilder().append(ChatColor.AQUA).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toAqua(String s) {
+        return String.valueOf(ChatColor.AQUA) + s + ChatColor.RESET;
+    }
 
-	public static String toGray(String s) {
-		return new StringBuilder().append(ChatColor.GRAY).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toGray(String s) {
+        return String.valueOf(ChatColor.GRAY) + s + ChatColor.RESET;
+    }
 
-	public static String toGold(String s) {
-		return new StringBuilder().append(ChatColor.GOLD).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toGold(String s) {
+        return String.valueOf(ChatColor.GOLD) + s + ChatColor.RESET;
+    }
 
-	public static String toBoldGreen(String s) {
-		return new StringBuilder().append(ChatColor.GREEN).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldGreen(String s) {
+        return String.valueOf(ChatColor.GREEN) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toBoldDarkGreen(String s) {
-		return new StringBuilder().append(ChatColor.DARK_GREEN).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldDarkGreen(String s) {
+        return String.valueOf(ChatColor.DARK_GREEN) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toBoldBlue(String s) {
-		return new StringBuilder().append(ChatColor.BLUE).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldBlue(String s) {
+        return String.valueOf(ChatColor.BLUE) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toBoldDarkAqua(String s) {
-		return new StringBuilder().append(ChatColor.DARK_AQUA).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldDarkAqua(String s) {
+        return String.valueOf(ChatColor.DARK_AQUA) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toBoldPurple(String s) {
-		return new StringBuilder().append(ChatColor.LIGHT_PURPLE).append(ChatColor.BOLD).append(s)
-				.append(ChatColor.RESET).toString();
-	}
+    public static String toBoldPurple(String s) {
+        return String.valueOf(ChatColor.LIGHT_PURPLE) + ChatColor.BOLD + s +
+                ChatColor.RESET;
+    }
 
-	public static String toBoldGold(String s) {
-		return new StringBuilder().append(ChatColor.GOLD).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldGold(String s) {
+        return String.valueOf(ChatColor.GOLD) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toBoldRed(String s) {
-		return new StringBuilder().append(ChatColor.RED).append(ChatColor.BOLD).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toBoldRed(String s) {
+        return String.valueOf(ChatColor.RED) + ChatColor.BOLD + s + ChatColor.RESET;
+    }
 
-	public static String toItalicYellow(String s) {
-		return new StringBuilder().append(ChatColor.YELLOW).append(ChatColor.ITALIC).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toItalicYellow(String s) {
+        return String.valueOf(ChatColor.YELLOW) + ChatColor.ITALIC + s + ChatColor.RESET;
+    }
 
-	public static String toPrefixRed(String s) {
-		return new StringBuilder(LegendItems.prefix).append(ChatColor.RED).append(s).append(ChatColor.RESET).toString();
-	}
+    public static String toPrefixRed(String s) {
+        return LegendItems.prefix + ChatColor.RED + s + ChatColor.RESET;
+    }
 
-	public static String toPrefixGreen(String s) {
-		return new StringBuilder(LegendItems.prefix).append(ChatColor.GREEN).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toPrefixGreen(String s) {
+        return LegendItems.prefix + ChatColor.GREEN + s + ChatColor.RESET;
+    }
 
-	public static String toPrefixYellow(String s) {
-		return new StringBuilder(LegendItems.prefix).append(ChatColor.YELLOW).append(s).append(ChatColor.RESET)
-				.toString();
-	}
+    public static String toPrefixYellow(String s) {
+        return LegendItems.prefix + ChatColor.YELLOW + s + ChatColor.RESET;
+    }
 }

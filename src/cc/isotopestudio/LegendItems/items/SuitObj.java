@@ -1,146 +1,129 @@
 package cc.isotopestudio.LegendItems.items;
 
+import cc.isotopestudio.LegendItems.type.ArmorAttriType;
+import cc.isotopestudio.LegendItems.type.SuitPosType;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.inventory.ItemStack;
-
-import cc.isotopestudio.LegendItems.type.ArmorAttriType;
-import cc.isotopestudio.LegendItems.type.SuitPosType;
-
 public class SuitObj {
 
-	private final String name;
-	private ArmorObj helmet;
-	private ArmorObj chestplate;
-	private ArmorObj leggings;
-	private ArmorObj boots;
-	private WeaponObj weapon;
-	private final Set<ArmorAttriType> ArmorAttriList;
-	private final HashMap<ArmorAttriType, Double> ArmorParameters;
-	private final Set<ArmorAttriType> WeaponAttriList;
-	private final HashMap<ArmorAttriType, Double> WeaponParameters;
+    private final String name;
+    private ArmorItem helmet;
+    private ArmorItem chestplate;
+    private ArmorItem leggings;
+    private ArmorItem boots;
+    private WeaponObj weapon;
+    private final Set<ArmorAttriType> ArmorAttriList;
+    private final HashMap<ArmorAttriType, Double> ArmorParameters;
+    private final Set<ArmorAttriType> WeaponAttriList;
+    private final HashMap<ArmorAttriType, Double> WeaponParameters;
 
-	public SuitObj(String name, Set<ArmorAttriType> armorAttriList, HashMap<ArmorAttriType, Double> armorParameters,
-			Set<ArmorAttriType> weaponAttriList, HashMap<ArmorAttriType, Double> weaponParameters) {
-		this.name = name;
-		ArmorAttriList = armorAttriList;
-		ArmorParameters = armorParameters;
-		WeaponAttriList = weaponAttriList;
-		WeaponParameters = weaponParameters;
-	}
+    public SuitObj(String name, Set<ArmorAttriType> armorAttriList, HashMap<ArmorAttriType, Double> armorParameters,
+                   Set<ArmorAttriType> weaponAttriList, HashMap<ArmorAttriType, Double> weaponParameters) {
+        this.name = name;
+        ArmorAttriList = armorAttriList;
+        ArmorParameters = armorParameters;
+        WeaponAttriList = weaponAttriList;
+        WeaponParameters = weaponParameters;
+    }
 
-	public void setHelmet(ArmorObj helmet) {
-		this.helmet = helmet;
-	}
+    public void setWeapon(WeaponObj weapon) {
+        this.weapon = weapon;
+    }
 
-	public void setChestplate(ArmorObj chestplate) {
-		this.chestplate = chestplate;
-	}
+    public void setEquip(SuitPosType type, ArmorItem armor) {
+        switch (type) {
+            case BOOTS: {
+                this.boots = armor;
+                break;
+            }
+            case CHESTPLATE: {
+                this.chestplate = armor;
+                break;
+            }
+            case HELMET: {
+                this.helmet = armor;
+                break;
+            }
+            case LEGGINGS: {
+                this.leggings = armor;
+                break;
+            }
+            case WEAPON:
+                break;
+            default:
+                break;
+        }
+    }
 
-	public void setLeggings(ArmorObj leggings) {
-		this.leggings = leggings;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setBoots(ArmorObj boots) {
-		this.boots = boots;
-	}
+    public ArmorItem getHelmet() {
+        return helmet;
+    }
 
-	public void setWeapon(WeaponObj weapon) {
-		this.weapon = weapon;
-	}
+    public ArmorItem getChestplate() {
+        return chestplate;
+    }
 
-	public void setEquip(SuitPosType type, ArmorObj armor) {
-		switch (type) {
-		case BOOTS: {
-			this.boots = armor;
-			break;
-		}
-		case CHESTPLATE: {
-			this.chestplate = armor;
-			break;
-		}
-		case HELMET: {
-			this.helmet = armor;
-			break;
-		}
-		case LEGGINGS: {
-			this.leggings = armor;
-			break;
-		}
-		case WEAPON:
-			break;
-		default:
-			break;
-		}
-	}
+    public ArmorItem getLeggings() {
+        return leggings;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public ArmorItem getBoots() {
+        return boots;
+    }
 
-	public ArmorObj getHelmet() {
-		return helmet;
-	}
+    public WeaponObj getWeapon() {
+        return weapon;
+    }
 
-	public ArmorObj getChestplate() {
-		return chestplate;
-	}
+    public ItemStack[] getItems() {
+        Set<ItemStack> items = new HashSet<>();
+        if (helmet != null) {
+            items.add(helmet.getItem());
+        }
+        if (chestplate != null) {
+            items.add(chestplate.getItem());
+        }
+        if (leggings != null) {
+            items.add(leggings.getItem());
+        }
+        if (boots != null) {
+            items.add(boots.getItem());
+        }
+        if (weapon != null) {
+            items.add(weapon.getItem());
+        }
+        return items.toArray(new ItemStack[]{});
+    }
 
-	public ArmorObj getLeggings() {
-		return leggings;
-	}
+    public Set<ArmorAttriType> getArmorAttriList() {
+        return ArmorAttriList;
+    }
 
-	public ArmorObj getBoots() {
-		return boots;
-	}
+    public HashMap<ArmorAttriType, Double> getArmorParameters() {
+        return ArmorParameters;
+    }
 
-	public WeaponObj getWeapon() {
-		return weapon;
-	}
+    public Set<ArmorAttriType> getWeaponAttriList() {
+        return WeaponAttriList;
+    }
 
-	public ItemStack[] getItems() {
-		Set<ItemStack> items = new HashSet<ItemStack>();
-		if (helmet != null) {
-			items.add(helmet.getItem());
-		}
-		if (chestplate != null) {
-			items.add(chestplate.getItem());
-		}
-		if (leggings != null) {
-			items.add(leggings.getItem());
-		}
-		if (boots != null) {
-			items.add(boots.getItem());
-		}
-		if (weapon != null) {
-			items.add(weapon.getItem());
-		}
-		return (ItemStack[]) items.toArray(new ItemStack[] {});
-	}
+    public HashMap<ArmorAttriType, Double> getWeaponParameters() {
+        return WeaponParameters;
+    }
 
-	public Set<ArmorAttriType> getArmorAttriList() {
-		return ArmorAttriList;
-	}
-
-	public HashMap<ArmorAttriType, Double> getArmorParameters() {
-		return ArmorParameters;
-	}
-
-	public Set<ArmorAttriType> getWeaponAttriList() {
-		return WeaponAttriList;
-	}
-
-	public HashMap<ArmorAttriType, Double> getWeaponParameters() {
-		return WeaponParameters;
-	}
-
-	@Override
-	public String toString() {
-		return "SuitObj [name=" + name + ", helmet=" + helmet.getName() + ", chestplate=" + chestplate.getName()
-				+ ", leggings=" + leggings.getName() + ", boots=" + boots.getName() + ", weapon=" + weapon.getName()
-				+ "]";
-	}
+    @Override
+    public String toString() {
+        return "SuitObj [name=" + name + ", helmet=" + helmet.getName() + ", chestplate=" + chestplate.getName()
+                + ", leggings=" + leggings.getName() + ", boots=" + boots.getName() + ", weapon=" + weapon.getName()
+                + "]";
+    }
 
 }

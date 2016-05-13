@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/armors.yml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/LegendItems.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/items/ArmorItem.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/items/Items.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/items/SuitObj.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/items/WeaponObj.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/task/UpdateItems.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/type/ArmorAttriType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/cc/isotopestudio/LegendItems/type/WeaponAttriType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/plugin.yml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/suits.yml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/weapons.yml" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

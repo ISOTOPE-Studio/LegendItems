@@ -15,7 +15,7 @@ leon:
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
-  - SPEED 1
+  - LIFE 1
 olivia:
   name: "§c设计者衣服"
   material: DIAMOND_CHESTPLATE
@@ -26,7 +26,7 @@ olivia:
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
-  - SPEED 1
+  - DURABILITY 10
 tidy:
   name: "§c设计者裤子"
   material: DIAMOND_LEGGINGS
@@ -37,7 +37,7 @@ tidy:
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
-  - SPEED 1
+  - DEFENSE 10
 tony:
   name: "§c开发者鞋子"
   material: CHAINMAIL_BOOTS
@@ -48,4 +48,4 @@ tony:
   - "§aISOTOPE Studio"
   - "§bPresents"
   attributions:
-  - SPEED 1
+  - BOUNCE 50

@@ -18,8 +18,17 @@ frank:
   name: "°Ïc¿œ ¶±¶Ω£"
   material: GOLD_SWORD
   damage: 0
-  lore: 
+  lore:
   - "°ÏaISOTOPE Studio"
   - "°ÏbPresents"
   attributions:
-  - ADDITION
+  - VAMPIRIC 56.3
+heidi:
+  name: "°Ïc—ß∞‘±¶Ω£"
+  material: GOLD_SWORD
+  damage: 0
+  lore:
+  - "°ÏaISOTOPE Studio"
+  - "°ÏbPresents"
+  attributions:
+  - CRITICAL 5
