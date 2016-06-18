@@ -1,6 +1,7 @@
 package cc.isotopestudio.LegendItems.command;
 
 import cc.isotopestudio.LegendItems.items.ArmorItem;
+import cc.isotopestudio.LegendItems.items.Items;
 import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import cc.isotopestudio.LegendItems.utli.S;
@@ -8,8 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import static cc.isotopestudio.LegendItems.items.Items.*;
 
 public class CommandLegend implements CommandExecutor {
 
@@ -29,7 +28,7 @@ public class CommandLegend implements CommandExecutor {
             if (args.length > 0 && !args[0].equalsIgnoreCase("help")) {
                 if (args.length > 1) {
                     if (args[0].equalsIgnoreCase("getw")) {
-                        WeaponObj item = weapons.get(args[1]);
+                        WeaponObj item = Items.weapons.get(args[1]);
                         if (item == null) {
                             player.sendMessage(S.toPrefixRed("��Ʒ������"));
                             return true;
@@ -39,7 +38,7 @@ public class CommandLegend implements CommandExecutor {
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("geta")) {
-                        ArmorItem item = armors.get(args[1]);
+                        ArmorItem item = Items.armors.get(args[1]);
                         if (item == null) {
                             player.sendMessage(S.toPrefixRed("��Ʒ������"));
                             return true;
@@ -49,7 +48,7 @@ public class CommandLegend implements CommandExecutor {
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("gets")) {
-                        SuitObj item = suits.get(args[1]);
+                        SuitObj item = Items.suits.get(args[1]);
                         if (item == null) {
                             player.sendMessage(S.toPrefixRed("��װ������"));
                             return true;
@@ -60,7 +59,7 @@ public class CommandLegend implements CommandExecutor {
                     }
                 }
                 if (args[0].equalsIgnoreCase("listw")) {
-                    String result = weapons.keySet().toString();
+                    String result = Items.weapons.keySet().toString();
                     if (result.length() == 2) {
                         player.sendMessage(S.toPrefixRed("û��װ��"));
                         return true;
@@ -69,7 +68,7 @@ public class CommandLegend implements CommandExecutor {
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("lista")) {
-                    String result = armors.keySet().toString();
+                    String result = Items.armors.keySet().toString();
                     if (result.length() == 2) {
                         player.sendMessage(S.toPrefixRed("û������"));
                         return true;
@@ -78,7 +77,7 @@ public class CommandLegend implements CommandExecutor {
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("lists")) {
-                    String result = suits.keySet().toString();
+                    String result = Items.suits.keySet().toString();
                     if (result.length() == 2) {
                         player.sendMessage(S.toPrefixRed("û������"));
                         return true;

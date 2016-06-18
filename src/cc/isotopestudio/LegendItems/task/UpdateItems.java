@@ -1,8 +1,9 @@
 package cc.isotopestudio.LegendItems.task;
 
+import cc.isotopestudio.LegendItems.items.Items;
+import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.LegendItems;
 import cc.isotopestudio.LegendItems.items.ArmorItem;
-import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.SuitPosType;
@@ -15,8 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static cc.isotopestudio.LegendItems.items.Items.*;
-
 public class UpdateItems extends BukkitRunnable {
     private final LegendItems plugin;
 
@@ -27,9 +26,9 @@ public class UpdateItems extends BukkitRunnable {
     @SuppressWarnings("deprecation")
     @Override
     public void run() {
-        weapons = new HashMap<>();
-        armors = new HashMap<>();
-        suits = new HashMap<>();
+        Items.weapons = new HashMap<>();
+        Items.armors = new HashMap<>();
+        Items.suits = new HashMap<>();
 
         // Build suits
         Set<String> suitKeys = plugin.getSuitsData().getKeys(false);
@@ -78,7 +77,7 @@ public class UpdateItems extends BukkitRunnable {
                 WeaponAttriList.add(type);
                 WeaponParameters.put(type, value);
             }
-            suits.put(key, new SuitObj(plugin.getSuitsData().getString(key + ".name"), ArmorAttriList, ArmorParameters,
+            Items.suits.put(key, new SuitObj(plugin.getSuitsData().getString(key + ".name"), ArmorAttriList, ArmorParameters,
                     WeaponAttriList, WeaponParameters));
             suitMap.put(key, new HashMap<>());
             String helmet = plugin.getSuitsData().getString(key + ".armors.name.helmet");
@@ -146,12 +145,12 @@ public class UpdateItems extends BukkitRunnable {
                 attriList.add(type);
                 parameters.put(type, value);
             }
-            weapons.put(key, new WeaponObj(name, material, damage, lore, attriList, parameters));
+            Items.weapons.put(key, new WeaponObj(name, material, damage, lore, attriList, parameters));
             for (String suitName : suitKeys) {
                 if (suitMap.get(suitName).get(SuitPosType.WEAPON) != null) {
                     if (key.equals(suitMap.get(suitName).get(SuitPosType.WEAPON))) {
-                        suits.get(suitName).setWeapon(weapons.get(key));
-                        weapons.get(key).setSuit(suits.get(suitName));
+                        Items.suits.get(suitName).setWeapon(Items.weapons.get(key));
+                        Items.weapons.get(key).setSuit(Items.suits.get(suitName));
                     }
                 }
             }
@@ -199,19 +198,19 @@ public class UpdateItems extends BukkitRunnable {
                 attriList.add(type);
                 parameters.put(type, value);
             }
-            armors.put(key, new ArmorItem(name, material, damage, lore, attriList, parameters));
+            Items.armors.put(key, new ArmorItem(name, material, damage, lore, attriList, parameters));
             for (String suitName : suitKeys) {
                 for (SuitPosType type : SuitPosType.values())
                     if (suitMap.get(suitName).get(type) != null)
                         if (key.equals(suitMap.get(suitName).get(type))) {
-                            suits.get(suitName).setEquip(type, armors.get(key));
-                            armors.get(key).setSuit(suits.get(suitName));
+                            Items.suits.get(suitName).setEquip(type, Items.armors.get(key));
+                            Items.armors.get(key).setSuit(Items.suits.get(suitName));
                         }
             }
         }
-        System.out.println(weapons);
-        System.out.println(armors);
-        System.out.println(suits);
+        System.out.println(Items.weapons);
+        System.out.println(Items.armors);
+        System.out.println(Items.suits);
     }
 
     private static String getPassword() {
