@@ -3,17 +3,17 @@ package cc.isotopestudio.LegendItems.type;
 import cc.isotopestudio.LegendItems.utli.S;
 
 public enum WeaponAttriType {
-    ADDITIONAL("¹¥»÷", "Ôö¼Ó¹¥»÷Öµ", false),
+    ADDITIONAL("æ”»å‡»", "å¢åŠ æ”»å‡»å€¼", false),
 
-    CRITICAL("±©»÷", "Ë«±¶¹¥»÷", true),
+    CRITICAL("æš´å‡»", "åŒå€æ”»å‡»", true),
 
-    VAMPIRIC("ÎüÑª", "Îü¹¥»÷Á¦5%µÄÉúÃü", true),
+    VAMPIRIC("å¸è¡€", "å¸æ”»å‡»åŠ›5%çš„ç”Ÿå‘½", true),
 
-    DIRECT("ÆÆ¼×ÉËº¦", "ºöÊÓ»¤¼×·ÀÓù", false),
+    DIRECT("ç ´ç”²ä¼¤å®³", "å¿½è§†æŠ¤ç”²é˜²å¾¡", false),
 
-    MONSTER("¹ÖÎïÉËº¦", "Õë¶Ô¹ÖÎïÉËº¦", false),
+    MONSTER("æ€ªç‰©ä¼¤å®³", "é’ˆå¯¹æ€ªç‰©ä¼¤å®³", false),
 
-    PLAYER("Íæ¼ÒÉËº¦", "Õë¶ÔÍæ¼ÒÉËº¦", false);
+    PLAYER("ç©å®¶ä¼¤å®³", "é’ˆå¯¹ç©å®¶ä¼¤å®³", false);
 
     final private String name;
     final private boolean isPercentile;

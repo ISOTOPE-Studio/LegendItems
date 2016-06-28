@@ -1,7 +1,6 @@
 package cc.isotopestudio.LegendItems.command;
 
 import cc.isotopestudio.LegendItems.items.ArmorItem;
-import cc.isotopestudio.LegendItems.items.Items;
 import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import cc.isotopestudio.LegendItems.utli.S;
@@ -10,87 +9,89 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static cc.isotopestudio.LegendItems.items.Items.*;
+
 public class CommandLegend implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("legend")) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage(S.toPrefixRed("����Ҫ��Ҳ���ִ��"));
+                sender.sendMessage(S.toPrefixRed("必须要玩家才能执行"));
                 sendHelp(sender, label);
                 return true;
             }
             Player player = (Player) sender;
             if (!player.hasPermission("legend.admin")) {
-                sender.sendMessage(S.toPrefixRed("��û��Ȩ��"));
+                sender.sendMessage(S.toPrefixRed("你没有权限"));
                 return true;
             }
             if (args.length > 0 && !args[0].equalsIgnoreCase("help")) {
                 if (args.length > 1) {
                     if (args[0].equalsIgnoreCase("getw")) {
-                        WeaponObj item = Items.weapons.get(args[1]);
+                        WeaponObj item = weapons.get(args[1]);
                         if (item == null) {
-                            player.sendMessage(S.toPrefixRed("��Ʒ������"));
+                            player.sendMessage(S.toPrefixRed("物品不存在"));
                             return true;
                         }
                         player.getInventory().addItem(item.getItem());
-                        player.sendMessage(S.toPrefixGreen("�ɹ���� " + args[1]));
+                        player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("geta")) {
-                        ArmorItem item = Items.armors.get(args[1]);
+                        ArmorItem item = armors.get(args[1]);
                         if (item == null) {
-                            player.sendMessage(S.toPrefixRed("��Ʒ������"));
+                            player.sendMessage(S.toPrefixRed("物品不存在"));
                             return true;
                         }
                         player.getInventory().addItem(item.getItem());
-                        player.sendMessage(S.toPrefixGreen("�ɹ���� " + args[1]));
+                        player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("gets")) {
-                        SuitObj item = Items.suits.get(args[1]);
+                        SuitObj item = suits.get(args[1]);
                         if (item == null) {
-                            player.sendMessage(S.toPrefixRed("��װ������"));
+                            player.sendMessage(S.toPrefixRed("套装不存在"));
                             return true;
                         }
                         player.getInventory().addItem(item.getItems());
-                        player.sendMessage(S.toPrefixGreen("�ɹ���� " + args[1]));
+                        player.sendMessage(S.toPrefixGreen("成功获得 " + args[1]));
                         return true;
                     }
                 }
                 if (args[0].equalsIgnoreCase("listw")) {
-                    String result = Items.weapons.keySet().toString();
+                    String result = weapons.keySet().toString();
                     if (result.length() == 2) {
-                        player.sendMessage(S.toPrefixRed("û��װ��"));
+                        player.sendMessage(S.toPrefixRed("没有装备"));
                         return true;
                     }
-                    player.sendMessage(S.toPrefixGreen("�����б� " + result.substring(1, result.length() - 1)));
+                    player.sendMessage(S.toPrefixGreen("武器列表 " + result.substring(1, result.length() - 1)));
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("lista")) {
-                    String result = Items.armors.keySet().toString();
+                    String result = armors.keySet().toString();
                     if (result.length() == 2) {
-                        player.sendMessage(S.toPrefixRed("û������"));
+                        player.sendMessage(S.toPrefixRed("没有武器"));
                         return true;
                     }
-                    player.sendMessage(S.toPrefixGreen("װ���б� " + result.substring(1, result.length() - 1)));
+                    player.sendMessage(S.toPrefixGreen("装备列表 " + result.substring(1, result.length() - 1)));
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("lists")) {
-                    String result = Items.suits.keySet().toString();
+                    String result = suits.keySet().toString();
                     if (result.length() == 2) {
-                        player.sendMessage(S.toPrefixRed("û������"));
+                        player.sendMessage(S.toPrefixRed("没有武器"));
                         return true;
                     }
-                    player.sendMessage(S.toPrefixGreen("װ���б� " + result.substring(1, result.length() - 1)));
+                    player.sendMessage(S.toPrefixGreen("装备列表 " + result.substring(1, result.length() - 1)));
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("update")) {
 
-                    player.sendMessage(S.toPrefixGreen("�ɹ����� "));
+                    player.sendMessage(S.toPrefixGreen("成功更新 "));
                     return true;
                 }
-                S.toPrefixRed("�������");
+                S.toPrefixRed("命令不存在");
                 sendHelp(player, label);
                 return true;
             } else {
@@ -102,14 +103,14 @@ public class CommandLegend implements CommandExecutor {
     }
 
     private void sendHelp(CommandSender player, String label) {
-        player.sendMessage(S.toPrefixGreen("�����˵�"));
-        player.sendMessage(S.toBoldGreen("/" + label + " getw <������>") + S.toGray(" - ") + S.toGold("��ô�������"));
-        player.sendMessage(S.toBoldGreen("/" + label + " geta <װ����>") + S.toGray(" - ") + S.toGold("��ô���װ��"));
-        player.sendMessage(S.toBoldGreen("/" + label + " gets <��װ��>") + S.toGray(" - ") + S.toGold("��ô�����װ"));
-        player.sendMessage(S.toBoldGreen("/" + label + " listw") + S.toGray(" - ") + S.toGold("�鿴���������б�"));
-        player.sendMessage(S.toBoldGreen("/" + label + " lista") + S.toGray(" - ") + S.toGold("�鿴����װ���б�"));
-        player.sendMessage(S.toBoldGreen("/" + label + " lists") + S.toGray(" - ") + S.toGold("�鿴������װ�б�"));
-        player.sendMessage(S.toBoldGreen("/" + label + " update") + S.toGray(" - ") + S.toGold("�����б�"));
+        player.sendMessage(S.toPrefixGreen("帮助菜单"));
+        player.sendMessage(S.toBoldGreen("/" + label + " getw <武器名>") + S.toGray(" - ") + S.toGold("获得传奇武器"));
+        player.sendMessage(S.toBoldGreen("/" + label + " geta <装备名>") + S.toGray(" - ") + S.toGold("获得传奇装备"));
+        player.sendMessage(S.toBoldGreen("/" + label + " gets <套装名>") + S.toGray(" - ") + S.toGold("获得传奇套装"));
+        player.sendMessage(S.toBoldGreen("/" + label + " listw") + S.toGray(" - ") + S.toGold("查看传奇武器列表"));
+        player.sendMessage(S.toBoldGreen("/" + label + " lista") + S.toGray(" - ") + S.toGold("查看传奇装备列表"));
+        player.sendMessage(S.toBoldGreen("/" + label + " lists") + S.toGray(" - ") + S.toGold("查看传奇套装列表"));
+        player.sendMessage(S.toBoldGreen("/" + label + " update") + S.toGray(" - ") + S.toGold("更新列表"));
     }
 
 }

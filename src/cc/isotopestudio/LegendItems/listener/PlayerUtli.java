@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerUtli {
+
     public static Set<ArmorItem> getArmorItems(Player player) {
         Set<ArmorItem> result = new HashSet<>();
         for (ItemStack armor : player.getInventory().getArmorContents()) {

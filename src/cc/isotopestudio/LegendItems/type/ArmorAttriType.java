@@ -3,17 +3,17 @@ package cc.isotopestudio.LegendItems.type;
 import cc.isotopestudio.LegendItems.utli.S;
 
 public enum ArmorAttriType {
-    DODGE("ÉÁ±Ü", "¶ã±ÜÉËº¦", true),
+    DODGE("é—ªé¿", "èº²é¿ä¼¤å®³", true),
 
-    BOUNCE("·´ÉË", "·´µ¯30%ÉËº¦", true),
+    BOUNCE("åä¼¤", "åå¼¹30%ä¼¤å®³", true),
 
-    DEFENSE("·ÀÓù", "Ôö¼Ó·ÀÓùÖµ", false),
+    DEFENSE("é˜²å¾¡", "å¢åŠ é˜²å¾¡å€¼", false),
 
-    LIFE("ÉúÃü", "Ôö¼ÓÉúÃüÖµ", false),
+    LIFE("ç”Ÿå‘½", "å¢åŠ ç”Ÿå‘½å€¼", false),
 
-    FLEXIBILITY("ÈÍĞÔ", "²»»á±»±©»÷", true),
+    FLEXIBILITY("éŸ§æ€§", "ä¸ä¼šè¢«æš´å‡»", true),
 
-    DURABILITY("ÄÍ¾Ã", "²¹³ä..", false);
+    DURABILITY("è€ä¹…", "è¡¥å……..", false);
 
     final private String name;
     final private boolean isPercentile;

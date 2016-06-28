@@ -45,14 +45,14 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     value = Double.parseDouble(s[1]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + line + "ÊÇÎÞÐ§ÐÐ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + line + "æ˜¯æ— æ•ˆè¡Œ");
                     continue;
                 }
                 ArmorAttriType type;
                 try {
                     type = ArmorAttriType.valueOf(s[0]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + s[0] + "ÊÇÎÞÐ§µÄÎäÆ÷ÊôÐÔ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + s[0] + "æ˜¯æ— æ•ˆçš„æ­¦å™¨å±žæ€§");
                     continue;
                 }
                 ArmorAttriList.add(type);
@@ -64,14 +64,14 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     value = Double.parseDouble(s[1]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + line + "ÊÇÎÞÐ§ÐÐ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + line + "æ˜¯æ— æ•ˆè¡Œ");
                     continue;
                 }
                 ArmorAttriType type;
                 try {
                     type = ArmorAttriType.valueOf(s[0]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + s[0] + "ÊÇÎÞÐ§µÄÎäÆ÷ÊôÐÔ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + s[0] + "æ˜¯æ— æ•ˆçš„æ­¦å™¨å±žæ€§");
                     continue;
                 }
                 WeaponAttriList.add(type);
@@ -118,7 +118,7 @@ public class UpdateItems extends BukkitRunnable {
                 material = Material.getMaterial(plugin.getWeaponsData().getString(key + ".material"));
             }
             if (material == null) {
-                plugin.getLogger().severe(plugin.getWeaponsData().getString(key + ".material", "(null)") + "????Ð§?????");
+                plugin.getLogger().severe(plugin.getWeaponsData().getString(key + ".material", "(null)") + "????æ•ˆ?????");
                 continue;
             }
             Short damage = (short) plugin.getWeaponsData().getInt(key + ".damage", 0);
@@ -131,7 +131,7 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     value = Double.parseDouble(s[1]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + line + "ÊÇÎÞÐ§ÐÐ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + line + "æ˜¯æ— æ•ˆè¡Œ");
                     continue;
                 }
 
@@ -139,7 +139,7 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     type = WeaponAttriType.valueOf(s[0]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + s[0] + "ÊÇÎÞÐ§µÄÎäÆ÷ÊôÐÔ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + s[0] + "æ˜¯æ— æ•ˆçš„æ­¦å™¨å±žæ€§");
                     continue;
                 }
                 attriList.add(type);
@@ -172,7 +172,7 @@ public class UpdateItems extends BukkitRunnable {
                 material = Material.getMaterial(plugin.getArmorsData().getString(key + ".material"));
             }
             if (material == null) {
-                plugin.getLogger().severe(plugin.getArmorsData().getString(key + ".material", "(null)") + "????Ð§?????");
+                plugin.getLogger().severe(plugin.getArmorsData().getString(key + ".material", "(null)") + "????æ•ˆ?????");
                 continue;
             }
             Short damage = (short) plugin.getArmorsData().getInt(key + ".damage", 0);
@@ -185,14 +185,14 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     value = Double.parseDouble(s[1]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + line + "ÊÇÎÞÐ§ÐÐ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + line + "æ˜¯æ— æ•ˆè¡Œ");
                     continue;
                 }
                 ArmorAttriType type;
                 try {
                     type = ArmorAttriType.valueOf(s[0]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "ÖÐµÄ" + s[0] + "ÊÇÎÞÐ§µÄÎäÆ÷ÊôÐÔ");
+                    plugin.getLogger().severe(key + "ä¸­çš„" + s[0] + "æ˜¯æ— æ•ˆçš„æ­¦å™¨å±žæ€§");
                     continue;
                 }
                 attriList.add(type);
@@ -218,31 +218,31 @@ public class UpdateItems extends BukkitRunnable {
         for (int i = 0; i <= 5; i++) {
             switch ((int) (Math.random() * 7)) {
                 case (0): {
-                    a += "¡ìf";
+                    a += "Â§f";
                     break;
                 }
                 case (1): {
-                    a += "¡ì1";
+                    a += "Â§1";
                     break;
                 }
                 case (2): {
-                    a += "¡ì2";
+                    a += "Â§2";
                     break;
                 }
                 case (3): {
-                    a += "¡ì3";
+                    a += "Â§3";
                     break;
                 }
                 case (4): {
-                    a += "¡ì4";
+                    a += "Â§4";
                     break;
                 }
                 case (5): {
-                    a += "¡ì5";
+                    a += "Â§5";
                     break;
                 }
                 case (6): {
-                    a += "¡ì6";
+                    a += "Â§6";
                     break;
                 }
             }

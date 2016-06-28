@@ -53,13 +53,13 @@ public class ArmorItem {
         this.suit = suit;
         ItemMeta meta = item.getItemMeta();
         List<String> lore = meta.getLore();
-        lore.add(S.toBoldDarkAqua("匹配套装 ") + suit.getName());
+        lore.add(S.toBoldDarkAqua("濂楄 ") + suit.getName());
 
-        lore.add(S.toBoldDarkAqua("穿上四件装备:"));
+        lore.add(S.toBoldDarkAqua("绌夸笂鍥涗欢瑁呭:"));
         for (ArmorAttriType type : suit.getArmorAttriList()) {
             meta.setLore(lore);
         }
-        lore.add(S.toBoldDarkAqua("使用武器:"));
+        lore.add(S.toBoldDarkAqua("浣跨敤姝﹀櫒:"));
         for (ArmorAttriType type : suit.getWeaponAttriList())
             lore.add(type.getLore(suit.getWeaponParameters().get(type)));
         meta.setLore(lore);

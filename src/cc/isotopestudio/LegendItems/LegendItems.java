@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LegendItems extends JavaPlugin {
 
     public static final String prefix = (new StringBuilder()).append(ChatColor.GOLD).append(ChatColor.BOLD).append("[")
-            .append("´«ÆæÎïÆ·").append("]").append(ChatColor.GREEN).toString();
+            .append("ä¼ å¥‡ç‰©å“").append("]").append(ChatColor.GREEN).toString();
     private static final String pluginName = "LegendItems";
 
     private void createConfigFile() {
@@ -30,27 +30,27 @@ public class LegendItems extends JavaPlugin {
     @Override
     public void onEnable() {
         createConfigFile();
-        getLogger().info("¼ÓÔØ×°±¸ÎÄ¼ş£¡");
+        getLogger().info("åŠ è½½è£…å¤‡æ–‡ä»¶ï¼");
         try {
             getArmorsData().save(armorsDataFile);
         } catch (IOException e) {
-            getLogger().info("×°±¸ÎÄ¼ş³ö´í£¡");
+            getLogger().info("è£…å¤‡æ–‡ä»¶å‡ºé”™ï¼");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        getLogger().info("¼ÓÔØÎäÆ÷ÎÄ¼ş£¡");
+        getLogger().info("åŠ è½½æ­¦å™¨æ–‡ä»¶ï¼");
         try {
             getWeaponsData().save(weaponsDataFile);
         } catch (IOException e) {
-            getLogger().info("ÎäÆ÷ÎÄ¼ş³ö´í£¡");
+            getLogger().info("æ­¦å™¨æ–‡ä»¶å‡ºé”™ï¼");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        getLogger().info("¼ÓÔØÌ××°ÎÄ¼ş£¡");
+        getLogger().info("åŠ è½½å¥—è£…æ–‡ä»¶ï¼");
         try {
             getSuitsData().save(suitsDataFile);
         } catch (IOException e) {
-            getLogger().info("Ì××°ÎÄ¼ş³ö´í£¡");
+            getLogger().info("å¥—è£…æ–‡ä»¶å‡ºé”™ï¼");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -60,8 +60,8 @@ public class LegendItems extends JavaPlugin {
 
         this.getCommand("Legend").setExecutor(new CommandLegend());
         new UpdateItems(this).runTask(this);
-        getLogger().info(pluginName + "³É¹¦¼ÓÔØ!");
-        getLogger().info(pluginName + "ÓÉISOTOPE StudioÖÆ×÷!");
+        getLogger().info(pluginName + "æˆåŠŸåŠ è½½!");
+        getLogger().info(pluginName + "ç”±ISOTOPE Studioåˆ¶ä½œ!");
         getLogger().info("http://isotopestudio.cc");
     }
 
@@ -90,7 +90,7 @@ public class LegendItems extends JavaPlugin {
         try {
             getWeaponsData().save(weaponsDataFile);
         } catch (IOException ex) {
-            getLogger().info("ÎäÆ÷ÎÄ¼ş±£´æÊ§°Ü£¡");
+            getLogger().info("æ­¦å™¨æ–‡ä»¶ä¿å­˜å¤±è´¥ï¼");
         }
     }
 
@@ -119,7 +119,7 @@ public class LegendItems extends JavaPlugin {
         try {
             getArmorsData().save(armorsDataFile);
         } catch (IOException ex) {
-            getLogger().info("×°±¸ÎÄ¼ş±£´æÊ§°Ü£¡");
+            getLogger().info("è£…å¤‡æ–‡ä»¶ä¿å­˜å¤±è´¥ï¼");
         }
     }
 
@@ -148,7 +148,7 @@ public class LegendItems extends JavaPlugin {
         try {
             getSuitsData().save(suitsDataFile);
         } catch (IOException ex) {
-            getLogger().info("Ì××°ÎÄ¼ş±£´æÊ§°Ü£¡");
+            getLogger().info("å¥—è£…æ–‡ä»¶ä¿å­˜å¤±è´¥ï¼");
         }
     }
 
