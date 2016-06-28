@@ -1,9 +1,9 @@
 package cc.isotopestudio.LegendItems.task;
 
-import cc.isotopestudio.LegendItems.items.Items;
-import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.LegendItems;
 import cc.isotopestudio.LegendItems.items.ArmorItem;
+import cc.isotopestudio.LegendItems.items.Items;
+import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.SuitPosType;
@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static cc.isotopestudio.LegendItems.LegendItems.*;
 
 public class UpdateItems extends BukkitRunnable {
     private final LegendItems plugin;
@@ -31,7 +33,7 @@ public class UpdateItems extends BukkitRunnable {
         Items.suits = new HashMap<>();
 
         // Build suits
-        Set<String> suitKeys = plugin.getSuitsData().getKeys(false);
+        Set<String> suitKeys = suitsFile.getKeys(false);
 
         HashMap<String, HashMap<SuitPosType, String>> suitMap = new HashMap<>();
         for (String key : suitKeys) {
@@ -39,7 +41,7 @@ public class UpdateItems extends BukkitRunnable {
             HashMap<ArmorAttriType, Double> ArmorParameters = new HashMap<>();
             Set<ArmorAttriType> WeaponAttriList = new HashSet<>();
             HashMap<ArmorAttriType, Double> WeaponParameters = new HashMap<>();
-            for (String line : plugin.getSuitsData().getStringList(key + ".armors.attributions")) {
+            for (String line : suitsFile.getStringList(key + ".armors.attributions")) {
                 String[] s = line.split(" ");
                 Double value;
                 try {
@@ -58,7 +60,7 @@ public class UpdateItems extends BukkitRunnable {
                 ArmorAttriList.add(type);
                 ArmorParameters.put(type, value);
             }
-            for (String line : plugin.getSuitsData().getStringList(key + ".weapon.attributions")) {
+            for (String line : suitsFile.getStringList(key + ".weapon.attributions")) {
                 String[] s = line.split(" ");
                 Double value;
                 try {
@@ -77,14 +79,14 @@ public class UpdateItems extends BukkitRunnable {
                 WeaponAttriList.add(type);
                 WeaponParameters.put(type, value);
             }
-            Items.suits.put(key, new SuitObj(plugin.getSuitsData().getString(key + ".name"), ArmorAttriList, ArmorParameters,
+            Items.suits.put(key, new SuitObj(suitsFile.getString(key + ".name"), ArmorAttriList, ArmorParameters,
                     WeaponAttriList, WeaponParameters));
             suitMap.put(key, new HashMap<>());
-            String helmet = plugin.getSuitsData().getString(key + ".armors.name.helmet");
-            String chestplate = plugin.getSuitsData().getString(key + ".armors.name.chestplate");
-            String leggings = plugin.getSuitsData().getString(key + ".armors.name.leggings");
-            String boots = plugin.getSuitsData().getString(key + ".armors.name.boots");
-            String weapon = plugin.getSuitsData().getString(key + ".weapon.name");
+            String helmet = suitsFile.getString(key + ".armors.name.helmet");
+            String chestplate = suitsFile.getString(key + ".armors.name.chestplate");
+            String leggings = suitsFile.getString(key + ".armors.name.leggings");
+            String boots = suitsFile.getString(key + ".armors.name.boots");
+            String weapon = suitsFile.getString(key + ".weapon.name");
             if (helmet != null) {
                 suitMap.get(key).put(SuitPosType.HELMET, helmet);
             }
@@ -103,29 +105,26 @@ public class UpdateItems extends BukkitRunnable {
         }
 
         // Build weapons
-        Set<String> keys = plugin.getWeaponsData().getKeys(false);
+        Set<String> keys = weaponsFile.getKeys(false);
         for (String key : keys) {
-            String name = plugin.getWeaponsData().getString(key + ".name");
-            if (plugin.getWeaponsData().getString(key + ".password") == null) {
-                plugin.getWeaponsData().set(key + ".password", getPassword());
+            String name = weaponsFile.getString(key + ".name");
+            if (weaponsFile.getString(key + ".password") == null) {
+                weaponsFile.set(key + ".password", getPassword());
             }
-            plugin.saveWeaponsData();
-            name += plugin.getWeaponsData().getString(key + ".password");
+            weaponsFile.save();
+            name += weaponsFile.getString(key + ".password");
             Material material;
-            if (plugin.getWeaponsData().isInt(key + ".material")) {
-                material = Material.getMaterial(plugin.getWeaponsData().getInt(key + ".material"));
-            } else {
-                material = Material.getMaterial(plugin.getWeaponsData().getString(key + ".material"));
-            }
+            material = weaponsFile.isInt(key + ".material") ?
+                    Material.getMaterial(weaponsFile.getInt(key + ".material")) : Material.getMaterial(weaponsFile.getString(key + ".material"));
             if (material == null) {
-                plugin.getLogger().severe(plugin.getWeaponsData().getString(key + ".material", "(null)") + "????效?????");
+                plugin.getLogger().severe(weaponsFile.getString(key + ".material", "(null)") + "是无效材料");
                 continue;
             }
-            Short damage = (short) plugin.getWeaponsData().getInt(key + ".damage", 0);
-            List<String> lore = plugin.getWeaponsData().getStringList(key + ".lore");
+            Short damage = (short) weaponsFile.getInt(key + ".damage", 0);
+            List<String> lore = weaponsFile.getStringList(key + ".lore");
             Set<WeaponAttriType> attriList = new HashSet<>();
             HashMap<WeaponAttriType, Double> parameters = new HashMap<>();
-            for (String line : plugin.getWeaponsData().getStringList(key + ".attributions")) {
+            for (String line : weaponsFile.getStringList(key + ".attributions")) {
                 String[] s = line.split(" ");
                 Double value;
                 try {
@@ -157,29 +156,25 @@ public class UpdateItems extends BukkitRunnable {
         }
 
         // Build armors
-        keys = plugin.getArmorsData().getKeys(false);
+        keys = armorsFile.getKeys(false);
         for (String key : keys) {
-            String name = plugin.getArmorsData().getString(key + ".name");
-            if (plugin.getArmorsData().getString(key + ".password") == null) {
-                plugin.getArmorsData().set(key + ".password", getPassword());
+            String name = armorsFile.getString(key + ".name");
+            if (armorsFile.getString(key + ".password") == null) {
+                armorsFile.set(key + ".password", getPassword());
             }
-            plugin.saveArmorsData();
-            name += plugin.getArmorsData().getString(key + ".password");
+            armorsFile.save();
+            name += armorsFile.getString(key + ".password");
             Material material;
-            if (plugin.getArmorsData().isInt(key + ".material")) {
-                material = Material.getMaterial(plugin.getArmorsData().getInt(key + ".material"));
-            } else {
-                material = Material.getMaterial(plugin.getArmorsData().getString(key + ".material"));
-            }
+            material = armorsFile.isInt(key + ".material") ? Material.getMaterial(armorsFile.getInt(key + ".material")) : Material.getMaterial(armorsFile.getString(key + ".material"));
             if (material == null) {
-                plugin.getLogger().severe(plugin.getArmorsData().getString(key + ".material", "(null)") + "????效?????");
+                plugin.getLogger().severe(armorsFile.getString(key + ".material", "(null)") + "是无效材料");
                 continue;
             }
-            Short damage = (short) plugin.getArmorsData().getInt(key + ".damage", 0);
-            List<String> lore = plugin.getArmorsData().getStringList(key + ".lore");
+            Short damage = (short) armorsFile.getInt(key + ".damage", 0);
+            List<String> lore = armorsFile.getStringList(key + ".lore");
             Set<ArmorAttriType> attriList = new HashSet<>();
             HashMap<ArmorAttriType, Double> parameters = new HashMap<>();
-            for (String line : plugin.getArmorsData().getStringList(key + ".attributions")) {
+            for (String line : armorsFile.getStringList(key + ".attributions")) {
                 String[] s = line.split(" ");
                 Double value;
                 try {

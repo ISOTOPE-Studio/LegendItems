@@ -4,6 +4,7 @@ import cc.isotopestudio.LegendItems.command.CommandLegend;
 import cc.isotopestudio.LegendItems.listener.ArmorListener;
 import cc.isotopestudio.LegendItems.listener.WeaponListener;
 import cc.isotopestudio.LegendItems.task.UpdateItems;
+import cc.isotopestudio.LegendItems.utli.PluginFile;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -27,8 +28,19 @@ public class LegendItems extends JavaPlugin {
 
     }
 
+    public static PluginFile configFile;
+    public static PluginFile armorsFile;
+    public static PluginFile weaponsFile;
+    public static PluginFile suitsFile;
+
     @Override
     public void onEnable() {
+
+        configFile = new PluginFile(this, "config.yml", "config.yml");
+        armorsFile = new PluginFile(this, "armors.yml", "armors.yml");
+        weaponsFile = new PluginFile(this, "weapons.yml", "weapons.yml");
+        suitsFile = new PluginFile(this, "suits.yml", "suits.yml");
+        /*
         createConfigFile();
         getLogger().info("加载装备文件！");
         try {
@@ -53,7 +65,7 @@ public class LegendItems extends JavaPlugin {
             getLogger().info("套装文件出错！");
             getServer().getPluginManager().disablePlugin(this);
             return;
-        }
+        }*/
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new ArmorListener(), this);
         pm.registerEvents(new WeaponListener(), this);
@@ -64,7 +76,7 @@ public class LegendItems extends JavaPlugin {
         getLogger().info(pluginName + "由ISOTOPE Studio制作!");
         getLogger().info("http://isotopestudio.cc");
     }
-
+/*
     private File weaponsDataFile = null;
     private FileConfiguration weaponsData = null;
 
@@ -151,5 +163,5 @@ public class LegendItems extends JavaPlugin {
             getLogger().info("套装文件保存失败！");
         }
     }
-
+*/
 }

@@ -38,10 +38,7 @@ public enum ArmorAttriType {
     }
 
     public String getLore(Double parameter) {
-        if (isPercentile()) {
-            return toString() + " " + getIntroduction() + " " + parameter + "%";
-        } else {
-            return toString() + " " + getIntroduction() + " " + parameter;
-        }
+        return isPercentile() ?
+                toString() + " " + getIntroduction() + " " + parameter + "%" : toString() + " " + getIntroduction() + " " + parameter;
     }
 }
