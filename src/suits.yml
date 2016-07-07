@@ -32,5 +32,8 @@ studio:
     # 指定套装武器名字
     name: mars
     # 套装装备加成
-    attributions:
+    armorattributions:
     - BOUNCE 50
+    # 套装武器加成
+    weaponattributions:
+    - PLAYER 7

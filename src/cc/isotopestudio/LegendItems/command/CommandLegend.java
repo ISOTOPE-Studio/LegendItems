@@ -1,9 +1,9 @@
 package cc.isotopestudio.LegendItems.command;
 
-import cc.isotopestudio.LegendItems.items.ArmorItem;
+import cc.isotopestudio.LegendItems.items.ArmorObj;
 import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
-import cc.isotopestudio.LegendItems.utli.S;
+import cc.isotopestudio.LegendItems.util.S;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,7 +39,7 @@ public class CommandLegend implements CommandExecutor {
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("geta")) {
-                        ArmorItem item = armors.get(args[1]);
+                        ArmorObj item = armors.get(args[1]);
                         if (item == null) {
                             player.sendMessage(S.toPrefixRed("物品不存在"));
                             return true;

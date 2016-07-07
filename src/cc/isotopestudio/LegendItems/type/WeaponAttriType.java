@@ -1,6 +1,6 @@
 package cc.isotopestudio.LegendItems.type;
 
-import cc.isotopestudio.LegendItems.utli.S;
+import cc.isotopestudio.LegendItems.util.S;
 
 public enum WeaponAttriType {
     ADDITIONAL("攻击", "增加攻击值", false),
@@ -34,11 +34,11 @@ public enum WeaponAttriType {
     }
 
     public String getIntroduction() {
-        return introduction;
+        return S.toBoldPurple(introduction);
     }
 
     public String getLore(Double parameter) {
         return isPercentile() ?
-                toString() + " " + getIntroduction() + " " + parameter + "%" : toString() + " " + getIntroduction() + " " + parameter;
+                /*toString() + " " + */getIntroduction() + " " + parameter + "%" : /*toString() + " " + */getIntroduction() + " " + parameter;
     }
 }

@@ -1,6 +1,7 @@
 package cc.isotopestudio.LegendItems.listener;
 
-import cc.isotopestudio.LegendItems.items.ArmorItem;
+import cc.isotopestudio.LegendItems.items.ArmorObj;
+import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +16,10 @@ public class ArmorListener implements Listener {
     public void onDefense(EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof Player)) return;
         Player player = (Player) event.getEntity();
-        Set<ArmorItem> armors = PlayerUtli.getArmorItems(player);
+        Set<ArmorObj> armors = PlayerUtil.getArmorItems(player);
         player.sendMessage(armors.toString());
-        WeaponObj weapon = PlayerUtli.getWeapon(player);
-        if (weapon != null)
-            player.sendMessage(weapon.toString());
+        WeaponObj weapon = PlayerUtil.getWeapon(player);
+        SuitObj suit = PlayerUtil.getSuits(player);
     }
 
 }

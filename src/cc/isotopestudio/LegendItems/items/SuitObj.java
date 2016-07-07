@@ -2,6 +2,7 @@ package cc.isotopestudio.LegendItems.items;
 
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.SuitPosType;
+import cc.isotopestudio.LegendItems.type.WeaponAttriType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -11,30 +12,35 @@ import java.util.Set;
 public class SuitObj {
 
     private final String name;
-    private ArmorItem helmet;
-    private ArmorItem chestplate;
-    private ArmorItem leggings;
-    private ArmorItem boots;
+    private ArmorObj helmet;
+    private ArmorObj chestplate;
+    private ArmorObj leggings;
+    private ArmorObj boots;
     private WeaponObj weapon;
     private final Set<ArmorAttriType> ArmorAttriList;
     private final HashMap<ArmorAttriType, Double> ArmorParameters;
-    private final Set<ArmorAttriType> WeaponAttriList;
-    private final HashMap<ArmorAttriType, Double> WeaponParameters;
+    private final Set<ArmorAttriType> WeaponAttriListForArmor;
+    private final HashMap<ArmorAttriType, Double> WeaponParametersForArmor;
+    private final Set<WeaponAttriType> WeaponAttriListForWeapon;
+    private final HashMap<WeaponAttriType, Double> WeaponParametersForWeapon;
 
     public SuitObj(String name, Set<ArmorAttriType> armorAttriList, HashMap<ArmorAttriType, Double> armorParameters,
-                   Set<ArmorAttriType> weaponAttriList, HashMap<ArmorAttriType, Double> weaponParameters) {
+                   Set<ArmorAttriType> weaponAttriListForArmor, HashMap<ArmorAttriType, Double> weaponParametersForArmor,
+                   Set<WeaponAttriType> weaponAttriListForWeapon, HashMap<WeaponAttriType, Double> weaponParametersForWeapon) {
         this.name = name;
-        ArmorAttriList = armorAttriList;
-        ArmorParameters = armorParameters;
-        WeaponAttriList = weaponAttriList;
-        WeaponParameters = weaponParameters;
+        this.ArmorAttriList = armorAttriList;
+        this.ArmorParameters = armorParameters;
+        this.WeaponAttriListForArmor = weaponAttriListForArmor;
+        this.WeaponParametersForArmor = weaponParametersForArmor;
+        this.WeaponAttriListForWeapon = weaponAttriListForWeapon;
+        this.WeaponParametersForWeapon = weaponParametersForWeapon;
     }
 
     public void setWeapon(WeaponObj weapon) {
         this.weapon = weapon;
     }
 
-    public void setEquip(SuitPosType type, ArmorItem armor) {
+    public void setEquip(SuitPosType type, ArmorObj armor) {
         switch (type) {
             case BOOTS: {
                 this.boots = armor;
@@ -54,8 +60,6 @@ public class SuitObj {
             }
             case WEAPON:
                 break;
-            default:
-                break;
         }
     }
 
@@ -63,19 +67,19 @@ public class SuitObj {
         return name;
     }
 
-    public ArmorItem getHelmet() {
+    public ArmorObj getHelmet() {
         return helmet;
     }
 
-    public ArmorItem getChestplate() {
+    public ArmorObj getChestplate() {
         return chestplate;
     }
 
-    public ArmorItem getLeggings() {
+    public ArmorObj getLeggings() {
         return leggings;
     }
 
-    public ArmorItem getBoots() {
+    public ArmorObj getBoots() {
         return boots;
     }
 
@@ -104,26 +108,43 @@ public class SuitObj {
     }
 
     public Set<ArmorAttriType> getArmorAttriList() {
-        return ArmorAttriList;
+        return new HashSet<>(ArmorAttriList);
     }
 
     public HashMap<ArmorAttriType, Double> getArmorParameters() {
-        return ArmorParameters;
+        return new HashMap<>(ArmorParameters);
     }
 
-    public Set<ArmorAttriType> getWeaponAttriList() {
-        return WeaponAttriList;
+    public Set<ArmorAttriType> getWeaponAttriListForArmor() {
+        return new HashSet<>(WeaponAttriListForArmor);
     }
 
-    public HashMap<ArmorAttriType, Double> getWeaponParameters() {
-        return WeaponParameters;
+    public HashMap<ArmorAttriType, Double> getWeaponParametersForArmor() {
+        return new HashMap<>(WeaponParametersForArmor);
+    }
+
+    public Set<WeaponAttriType> getWeaponAttriListForWeapon() {
+        return new HashSet<>(WeaponAttriListForWeapon);
+    }
+
+    public HashMap<WeaponAttriType, Double> getWeaponParametersForWeapon() {
+        return new HashMap<>(WeaponParametersForWeapon);
     }
 
     @Override
     public String toString() {
-        return "SuitObj [name=" + name + ", helmet=" + helmet.getName() + ", chestplate=" + chestplate.getName()
-                + ", leggings=" + leggings.getName() + ", boots=" + boots.getName() + ", weapon=" + weapon.getName()
-                + "]";
+        return "SuitObj{" + "name='" + name + '\'' +
+                ", helmet=" + helmet +
+                ", chestplate=" + chestplate +
+                ", leggings=" + leggings +
+                ", boots=" + boots +
+                ", weapon=" + weapon +
+                ", ArmorAttriList=" + ArmorAttriList +
+                ", ArmorParameters=" + ArmorParameters +
+                ", WeaponAttriListForArmor=" + WeaponAttriListForArmor +
+                ", WeaponParametersForArmor=" + WeaponParametersForArmor +
+                ", WeaponAttriListForWeapon=" + WeaponAttriListForWeapon +
+                ", WeaponParametersForWeapon=" + WeaponParametersForWeapon +
+                '}';
     }
-
 }

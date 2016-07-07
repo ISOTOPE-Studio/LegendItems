@@ -1,16 +1,17 @@
 package cc.isotopestudio.LegendItems.items;
 
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
-import cc.isotopestudio.LegendItems.utli.S;
+import cc.isotopestudio.LegendItems.util.S;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ArmorItem {
+public class ArmorObj {
 
     private final String name;
     private final Set<ArmorAttriType> attriList;
@@ -18,8 +19,8 @@ public class ArmorItem {
     private final ItemStack item;
     private SuitObj suit = null;
 
-    public ArmorItem(String name, Material material, short damage, List<String> lore, Set<ArmorAttriType> attriList,
-                     HashMap<ArmorAttriType, Double> parameters) {
+    public ArmorObj(String name, Material material, short damage, List<String> lore, Set<ArmorAttriType> attriList,
+                    HashMap<ArmorAttriType, Double> parameters) {
         this.name = name;
         this.attriList = attriList;
         this.parameters = parameters;
@@ -38,7 +39,11 @@ public class ArmorItem {
     }
 
     public Set<ArmorAttriType> getAttriList() {
-        return attriList;
+        return new HashSet<>(attriList);
+    }
+
+    public HashMap<ArmorAttriType, Double> getParameters() {
+        return new HashMap<>(parameters);
     }
 
     public ItemStack getItem() {
@@ -57,18 +62,18 @@ public class ArmorItem {
 
         lore.add(S.toBoldDarkAqua("穿上四件装备:"));
         for (ArmorAttriType type : suit.getArmorAttriList()) {
-            meta.setLore(lore);
+            lore.add(type.getLore(suit.getArmorParameters().get(type)));
         }
         lore.add(S.toBoldDarkAqua("使用武器:"));
-        for (ArmorAttriType type : suit.getWeaponAttriList())
-            lore.add(type.getLore(suit.getWeaponParameters().get(type)));
+        for (ArmorAttriType type : suit.getWeaponAttriListForArmor())
+            lore.add(type.getLore(suit.getWeaponParametersForArmor().get(type)));
         meta.setLore(lore);
         item.setItemMeta(meta);
     }
 
     @Override
     public String toString() {
-        return "ArmorItem [name=" + name + ", attriList=" + attriList + ", parameters=" + parameters + ", item="
+        return "ArmorObj [name=" + name + ", attriList=" + attriList + ", parameters=" + parameters + ", item="
                 + item.getType() + ((suit != null) ? (", suit=" + suit.getName()) : "" + "]");
     }
 

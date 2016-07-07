@@ -1,11 +1,13 @@
 package cc.isotopestudio.LegendItems.items;
 
 import cc.isotopestudio.LegendItems.type.WeaponAttriType;
+import cc.isotopestudio.LegendItems.util.S;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,11 +39,15 @@ public class WeaponObj {
     }
 
     public Set<WeaponAttriType> getAttriList() {
-        return attriList;
+        return new HashSet<>(attriList);
     }
 
     public ItemStack getItem() {
         return item;
+    }
+
+    public HashMap<WeaponAttriType, Double> getParameters() {
+        return new HashMap<>(parameters);
     }
 
     public SuitObj getSuit() {
@@ -50,6 +56,15 @@ public class WeaponObj {
 
     public void setSuit(SuitObj suit) {
         this.suit = suit;
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = meta.getLore();
+        lore.add(S.toBoldDarkAqua("套装 ") + suit.getName());
+
+        lore.add(S.toBoldDarkAqua("穿上四件装备并使用武器:"));
+        for (WeaponAttriType type : suit.getWeaponAttriListForWeapon())
+            lore.add(type.getLore(suit.getWeaponParametersForWeapon().get(type)));
+        meta.setLore(lore);
+        item.setItemMeta(meta);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cc.isotopestudio.LegendItems.utli;
+package cc.isotopestudio.LegendItems.util;
 
 /**
  * Created by Mars on 6/20/2016.

@@ -1,4 +1,4 @@
-package cc.isotopestudio.LegendItems.utli;
+package cc.isotopestudio.LegendItems.util;
 
 import cc.isotopestudio.LegendItems.LegendItems;
 import org.bukkit.ChatColor;

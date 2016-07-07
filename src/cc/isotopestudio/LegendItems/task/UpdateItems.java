@@ -1,7 +1,7 @@
 package cc.isotopestudio.LegendItems.task;
 
 import cc.isotopestudio.LegendItems.LegendItems;
-import cc.isotopestudio.LegendItems.items.ArmorItem;
+import cc.isotopestudio.LegendItems.items.ArmorObj;
 import cc.isotopestudio.LegendItems.items.Items;
 import cc.isotopestudio.LegendItems.items.SuitObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
@@ -39,8 +39,10 @@ public class UpdateItems extends BukkitRunnable {
         for (String key : suitKeys) {
             Set<ArmorAttriType> ArmorAttriList = new HashSet<>();
             HashMap<ArmorAttriType, Double> ArmorParameters = new HashMap<>();
-            Set<ArmorAttriType> WeaponAttriList = new HashSet<>();
-            HashMap<ArmorAttriType, Double> WeaponParameters = new HashMap<>();
+            Set<ArmorAttriType> WeaponAttriListForArmor = new HashSet<>();
+            HashMap<ArmorAttriType, Double> WeaponParametersForArmor = new HashMap<>();
+            Set<WeaponAttriType> WeaponAttriListForWeapon = new HashSet<>();
+            HashMap<WeaponAttriType, Double> WeaponParametersForWeapon = new HashMap<>();
             for (String line : suitsFile.getStringList(key + ".armors.attributions")) {
                 String[] s = line.split(" ");
                 Double value;
@@ -54,13 +56,13 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     type = ArmorAttriType.valueOf(s[0]);
                 } catch (Exception e) {
-                    plugin.getLogger().severe(key + "中的" + s[0] + "是无效的武器属性");
+                    plugin.getLogger().severe(key + "中的" + s[0] + "是无效的装备属性");
                     continue;
                 }
                 ArmorAttriList.add(type);
                 ArmorParameters.put(type, value);
             }
-            for (String line : suitsFile.getStringList(key + ".weapon.attributions")) {
+            for (String line : suitsFile.getStringList(key + ".weapon.armorattributions")) {
                 String[] s = line.split(" ");
                 Double value;
                 try {
@@ -73,14 +75,33 @@ public class UpdateItems extends BukkitRunnable {
                 try {
                     type = ArmorAttriType.valueOf(s[0]);
                 } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + s[0] + "是无效的装备属性");
+                    continue;
+                }
+                WeaponAttriListForArmor.add(type);
+                WeaponParametersForArmor.put(type, value);
+            }
+            for (String line : suitsFile.getStringList(key + ".weapon.weaponattributions")) {
+                String[] s = line.split(" ");
+                Double value;
+                try {
+                    value = Double.parseDouble(s[1]);
+                } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + line + "是无效行");
+                    continue;
+                }
+                WeaponAttriType type;
+                try {
+                    type = WeaponAttriType.valueOf(s[0]);
+                } catch (Exception e) {
                     plugin.getLogger().severe(key + "中的" + s[0] + "是无效的武器属性");
                     continue;
                 }
-                WeaponAttriList.add(type);
-                WeaponParameters.put(type, value);
+                WeaponAttriListForWeapon.add(type);
+                WeaponParametersForWeapon.put(type, value);
             }
             Items.suits.put(key, new SuitObj(suitsFile.getString(key + ".name"), ArmorAttriList, ArmorParameters,
-                    WeaponAttriList, WeaponParameters));
+                    WeaponAttriListForArmor, WeaponParametersForArmor, WeaponAttriListForWeapon, WeaponParametersForWeapon));
             suitMap.put(key, new HashMap<>());
             String helmet = suitsFile.getString(key + ".armors.name.helmet");
             String chestplate = suitsFile.getString(key + ".armors.name.chestplate");
@@ -193,7 +214,7 @@ public class UpdateItems extends BukkitRunnable {
                 attriList.add(type);
                 parameters.put(type, value);
             }
-            Items.armors.put(key, new ArmorItem(name, material, damage, lore, attriList, parameters));
+            Items.armors.put(key, new ArmorObj(name, material, damage, lore, attriList, parameters));
             for (String suitName : suitKeys) {
                 for (SuitPosType type : SuitPosType.values())
                     if (suitMap.get(suitName).get(type) != null)

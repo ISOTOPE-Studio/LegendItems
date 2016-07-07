@@ -1,6 +1,6 @@
 package cc.isotopestudio.LegendItems.type;
 
-import cc.isotopestudio.LegendItems.utli.S;
+import cc.isotopestudio.LegendItems.util.S;
 
 public enum ArmorAttriType {
     DODGE("闪避", "躲避伤害", true),
@@ -39,6 +39,6 @@ public enum ArmorAttriType {
 
     public String getLore(Double parameter) {
         return isPercentile() ?
-                toString() + " " + getIntroduction() + " " + parameter + "%" : toString() + " " + getIntroduction() + " " + parameter;
+                /*toString() + " "+*/getIntroduction() + " " + parameter + "%" : /*toString() + " " +*/ getIntroduction() + " " + parameter;
     }
 }
