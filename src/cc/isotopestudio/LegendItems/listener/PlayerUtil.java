@@ -1,9 +1,6 @@
 package cc.isotopestudio.LegendItems.listener;
 
-import cc.isotopestudio.LegendItems.items.ArmorObj;
-import cc.isotopestudio.LegendItems.items.Items;
-import cc.isotopestudio.LegendItems.items.SuitObj;
-import cc.isotopestudio.LegendItems.items.WeaponObj;
+import cc.isotopestudio.LegendItems.items.*;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -60,6 +57,13 @@ public class PlayerUtil {
     public static boolean isSuitHasWeapon(Player player) {
         SuitObj suit = getSuits(player);
         return suit != null && suit.getWeapon().equals(getWeapon(player));
+    }
+
+    @Nullable
+    public static MaterialObj getMaterial(Player player) {
+        ItemStack item = player.getInventory().getItem(9);
+
+        return null;
     }
 
 }

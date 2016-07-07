@@ -1,0 +1,29 @@
+# 武器属性
+# ADDITIONAL - 攻击
+# CRITICAL - 暴击
+# VAMPIRIC - 吸血
+# DIRECT - 破甲伤害
+# MONSTER - 怪物伤害
+# PLAYER - 玩家伤害
+
+# 装备属性
+# DODGE - 闪避
+# BOUNCE - 反伤
+# DEFENSE - 防御
+# LIFE - 生命
+# FLEXIBILITY - 韧性
+# DURABILITY - 耐久
+superstone:
+  name: "§c工作室头盔"
+  material: DIAMOND_HELMET
+  damage: 0
+  lore:
+  - "§3.Suits."
+  - "§aISOTOPE Studio"
+  - "§bPresents"
+  # 武器加成
+  weaponattributions:
+  - CRITICAL 20
+  # 装备加成
+  armorattributions:
+  - LIFE 1

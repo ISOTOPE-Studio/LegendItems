@@ -35,7 +35,7 @@ public class LegendItems extends JavaPlugin {
         pm.registerEvents(new WeaponListener(), this);
 
         this.getCommand("Legend").setExecutor(new CommandLegend());
-        new UpdateItems(this).runTask(this);
+        new UpdateItems().runTask(this);
         getLogger().info(pluginName + "成功加载!");
         getLogger().info(pluginName + "由ISOTOPE Studio制作!");
         getLogger().info("http://isotopestudio.cc");

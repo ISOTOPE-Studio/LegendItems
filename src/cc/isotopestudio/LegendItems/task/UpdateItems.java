@@ -1,6 +1,5 @@
 package cc.isotopestudio.LegendItems.task;
 
-import cc.isotopestudio.LegendItems.LegendItems;
 import cc.isotopestudio.LegendItems.items.ArmorObj;
 import cc.isotopestudio.LegendItems.items.Items;
 import cc.isotopestudio.LegendItems.items.SuitObj;
@@ -19,18 +18,13 @@ import java.util.Set;
 import static cc.isotopestudio.LegendItems.LegendItems.*;
 
 public class UpdateItems extends BukkitRunnable {
-    private final LegendItems plugin;
-
-    public UpdateItems(LegendItems plugin) {
-        this.plugin = plugin;
-    }
-
     @SuppressWarnings("deprecation")
     @Override
     public void run() {
         Items.weapons = new HashMap<>();
         Items.armors = new HashMap<>();
         Items.suits = new HashMap<>();
+        Items.materials = new HashMap<>();
 
         // Build suits
         Set<String> suitKeys = suitsFile.getKeys(false);
@@ -224,6 +218,10 @@ public class UpdateItems extends BukkitRunnable {
                         }
             }
         }
+
+        // Build materials
+        // TO-DO
+
         System.out.println(Items.weapons);
         System.out.println(Items.armors);
         System.out.println(Items.suits);
