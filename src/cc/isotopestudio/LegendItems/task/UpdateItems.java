@@ -1,9 +1,6 @@
 package cc.isotopestudio.LegendItems.task;
 
-import cc.isotopestudio.LegendItems.items.ArmorObj;
-import cc.isotopestudio.LegendItems.items.Items;
-import cc.isotopestudio.LegendItems.items.SuitObj;
-import cc.isotopestudio.LegendItems.items.WeaponObj;
+import cc.isotopestudio.LegendItems.items.*;
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.SuitPosType;
 import cc.isotopestudio.LegendItems.type.WeaponAttriType;
@@ -220,11 +217,75 @@ public class UpdateItems extends BukkitRunnable {
         }
 
         // Build materials
-        // TO-DO
+        keys = materialsFile.getKeys(false);
+        for (String key : keys) {
+            String name = materialsFile.getString(key + ".name");
+            if (materialsFile.getString(key + ".password") == null) {
+                materialsFile.set(key + ".password", getPassword());
+            }
+            materialsFile.save();
+            name += materialsFile.getString(key + ".password");
+            Material material;
+            material = materialsFile.isInt(key + ".material") ?
+                    Material.getMaterial(materialsFile.getInt(key + ".material")) : Material.getMaterial(materialsFile.getString(key + ".material"));
+            if (material == null) {
+                plugin.getLogger().severe(materialsFile.getString(key + ".material", "(null)") + "是无效材料");
+                continue;
+            }
+            Short damage = (short) materialsFile.getInt(key + ".damage", 0);
+            List<String> lore = materialsFile.getStringList(key + ".lore");
+            Set<WeaponAttriType> attriListForWeapon = new HashSet<>();
+            HashMap<WeaponAttriType, Double> parametersForWeapon = new HashMap<>();
+            Set<ArmorAttriType> attriListForArmor = new HashSet<>();
+            HashMap<ArmorAttriType, Double> parametersForArmor = new HashMap<>();
+            for (String line : materialsFile.getStringList(key + ".weaponattributions")) {
+                String[] s = line.split(" ");
+                Double value;
+                try {
+                    value = Double.parseDouble(s[1]);
+                } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + line + "是无效行");
+                    continue;
+                }
+
+                WeaponAttriType type;
+                try {
+                    type = WeaponAttriType.valueOf(s[0]);
+                } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + s[0] + "是无效的武器属性");
+                    continue;
+                }
+                attriListForWeapon.add(type);
+                parametersForWeapon.put(type, value);
+            }
+            for (String line : materialsFile.getStringList(key + ".armorattributions")) {
+                String[] s = line.split(" ");
+                Double value;
+                try {
+                    value = Double.parseDouble(s[1]);
+                } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + line + "是无效行");
+                    continue;
+                }
+
+                ArmorAttriType type;
+                try {
+                    type = ArmorAttriType.valueOf(s[0]);
+                } catch (Exception e) {
+                    plugin.getLogger().severe(key + "中的" + s[0] + "是无效的装备属性");
+                    continue;
+                }
+                attriListForArmor.add(type);
+                parametersForArmor.put(type, value);
+            }
+            Items.materials.put(key, new MaterialObj(name, material, damage, lore,
+                    attriListForArmor, parametersForArmor, attriListForWeapon, parametersForWeapon));
+        }
 
         System.out.println(Items.weapons);
         System.out.println(Items.armors);
         System.out.println(Items.suits);
+        System.out.println(Items.materials);
     }
 
     private static String getPassword() {

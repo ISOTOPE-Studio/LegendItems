@@ -14,11 +14,11 @@
 # FLEXIBILITY - 韧性
 # DURABILITY - 耐久
 superstone:
-  name: "§c工作室头盔"
-  material: DIAMOND_HELMET
+  name: "§c超自然"
+  material: STONE
   damage: 0
   lore:
-  - "§3.Suits."
+  - "§3.石头."
   - "§aISOTOPE Studio"
   - "§bPresents"
   # 武器加成

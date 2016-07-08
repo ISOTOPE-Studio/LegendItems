@@ -21,6 +21,7 @@ public class LegendItems extends JavaPlugin {
     public static PluginFile armorsFile;
     public static PluginFile weaponsFile;
     public static PluginFile suitsFile;
+    public static PluginFile materialsFile;
 
     @Override
     public void onEnable() {
@@ -29,6 +30,7 @@ public class LegendItems extends JavaPlugin {
         armorsFile = new PluginFile(this, "armors.yml", "armors.yml");
         weaponsFile = new PluginFile(this, "weapons.yml", "weapons.yml");
         suitsFile = new PluginFile(this, "suits.yml", "suits.yml");
+        materialsFile = new PluginFile(this, "materials.yml", "materials.yml");
 
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new ArmorListener(), this);

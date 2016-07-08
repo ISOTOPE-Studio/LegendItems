@@ -1,6 +1,7 @@
 package cc.isotopestudio.LegendItems.items;
 
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
+import cc.isotopestudio.LegendItems.type.WeaponAttriType;
 import cc.isotopestudio.LegendItems.util.S;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -65,8 +66,8 @@ public class ArmorObj {
             lore.add(type.getLore(suit.getArmorParameters().get(type)));
         }
         lore.add(S.toBoldDarkAqua("使用武器:"));
-        for (ArmorAttriType type : suit.getWeaponAttriListForArmor())
-            lore.add(type.getLore(suit.getWeaponParametersForArmor().get(type)));
+        for (WeaponAttriType type : suit.getWeaponAttriListForWeapon())
+            lore.add(type.getLore(suit.getWeaponParametersForWeapon().get(type)));
         meta.setLore(lore);
         item.setItemMeta(meta);
     }

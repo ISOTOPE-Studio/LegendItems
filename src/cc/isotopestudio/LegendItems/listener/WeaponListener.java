@@ -1,8 +1,10 @@
 package cc.isotopestudio.LegendItems.listener;
 
 import cc.isotopestudio.LegendItems.LegendItems;
+import cc.isotopestudio.LegendItems.items.MaterialObj;
 import cc.isotopestudio.LegendItems.items.WeaponObj;
 import cc.isotopestudio.LegendItems.type.WeaponAttriType;
+import org.bukkit.craftbukkit.libs.jline.internal.Nullable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -15,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 public class WeaponListener implements Listener {
@@ -67,21 +70,39 @@ public class WeaponListener implements Listener {
 
     }
 
-    private static void onAttri(EntityDamageByEntityEvent event, Player player, WeaponObj weapon,
-                                LivingEntity damagee) {
-        final Set<WeaponAttriType> attriList = weapon.getAttriList();
-        final HashMap<WeaponAttriType, Double> parameters = weapon.getParameters();
-        if (PlayerUtil.isSuitHasWeapon(player)) {
-            HashMap<WeaponAttriType, Double> suitParameters = weapon.getSuit().getWeaponParametersForWeapon();
-            for (WeaponAttriType attri : weapon.getSuit().getWeaponAttriListForWeapon()) {
-                if (attriList.contains(attri)) {
-                    parameters.put(attri, parameters.get(attri) + suitParameters.get(attri));
-                } else {
-                    parameters.put(attri, suitParameters.get(attri));
-                }
+    private static void addTwoAttri(Set<WeaponAttriType> attriList, HashMap<WeaponAttriType, Double> parameters,
+                                    Set<WeaponAttriType> attriListA, HashMap<WeaponAttriType, Double> parametersA) {
+        for (WeaponAttriType attri : attriListA) {
+            if (attriList.contains(attri)) {
+                parameters.put(attri, parameters.get(attri) + parametersA.get(attri));
+            } else {
+                attriList.add(attri);
+                parameters.put(attri, parametersA.get(attri));
             }
         }
+    }
+
+    private static void onAttri(EntityDamageByEntityEvent event, Player player, @Nullable WeaponObj weapon,
+                                LivingEntity damagee) {
+        MaterialObj material = PlayerUtil.getMaterial(player);
+        if (weapon == null && material == null)
+            return;
+        final Set<WeaponAttriType> attriList = weapon == null ? new HashSet<>() : weapon.getAttriList();
+        final HashMap<WeaponAttriType, Double> parameters = weapon == null ? new HashMap<>() : weapon.getParameters();
+
+        // Add attri from suit
+        if (PlayerUtil.isSuitHasWeapon(player)) {
+            addTwoAttri(attriList, parameters,
+                    weapon.getSuit().getWeaponAttriListForWeapon(), weapon.getSuit().getWeaponParametersForWeapon());
+        }
+
+        // Add attri from material
+        if (material != null) {
+            addTwoAttri(attriList, parameters, material.getAttriListForWeapon(), material.getParametersForWeapon());
+        }
+
         System.out.print(parameters);
+
         for (WeaponAttriType attri : attriList) {
             double parameter = parameters.get(attri);
             if (attri.isPercentile() && parameter < Math.random())

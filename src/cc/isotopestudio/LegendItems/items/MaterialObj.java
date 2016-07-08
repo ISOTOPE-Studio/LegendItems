@@ -3,6 +3,7 @@ package cc.isotopestudio.LegendItems.items;
 import cc.isotopestudio.LegendItems.type.ArmorAttriType;
 import cc.isotopestudio.LegendItems.type.WeaponAttriType;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -30,8 +31,11 @@ public class MaterialObj {
         this.parametersForWeapon = parametersForWeapon;
         for (ArmorAttriType type : attriListForArmor)
             lore.add(type.getLore(parametersForArmor.get(type)));
+        for (WeaponAttriType type : attriListForWeapon)
+            lore.add(type.getLore(parametersForWeapon.get(type)));
         ItemStack item = new ItemStack(material, 1, damage);
         ItemMeta meta = item.getItemMeta();
+        meta.addEnchant(Enchantment.DURABILITY, 10, true);
         meta.setDisplayName(name);
         meta.setLore(lore);
         item.setItemMeta(meta);

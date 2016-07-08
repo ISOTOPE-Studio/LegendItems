@@ -61,8 +61,16 @@ public class PlayerUtil {
 
     @Nullable
     public static MaterialObj getMaterial(Player player) {
-        ItemStack item = player.getInventory().getItem(9);
-
+        ItemStack item = player.getInventory().getItem(8);
+        if (item == null || item.getType() == Material.AIR
+                || !item.hasItemMeta() || !item.getItemMeta().hasDisplayName()) {
+            return null;
+        }
+        for (MaterialObj material : Items.materials.values()) {
+            if (item.getItemMeta().getDisplayName().equals(material.getName())) {
+                return material;
+            }
+        }
         return null;
     }
 
